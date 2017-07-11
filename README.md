@@ -1,2 +1,2 @@
-# monitoring-thesis
+# monitoring-tank
 DjangoRest Heroku Postgres
