@@ -11,9 +11,9 @@ body{
 	font-family: 'Open Sans', sans-serif;
  }
 h1,h2,h3,h4,h5,h6{
-	margin:0;	
+	margin:0;
 font-family: 'Open Sans', sans-serif;
-}	
+}
 p{
 	margin:0;
 	letter-spacing:1px;
@@ -115,7 +115,7 @@ ul.dropdown-menu li {
 	border-radius:2em;
 	-webkit-border-radius:2em;
 	-moz-border-radius:2em;
-	-o-border-radius:2em;	
+	-o-border-radius:2em;
 	text-align:center;
 	display: inline-block;
 	position: absolute;
@@ -341,7 +341,7 @@ li.second.top_bell_nav.dropdown-menu > li > a:hover,li.second.top_bell_nav .drop
 }
 .progress .bar {
 		z-index: 2;
-		height:15px; 
+		height:15px;
 		font-size: 12px;
 		color: white;
 		text-align: center;
@@ -357,19 +357,19 @@ li.second.top_bell_nav.dropdown-menu > li > a:hover,li.second.top_bell_nav .drop
 	}
 .progress-striped .yellow{
 	background:#f0ad4e;
-} 
+}
 .progress-striped .green{
 	background:#5cb85c;
-} 
+}
 .progress-striped .light-blue{
 	background:#4F52BA;
-} 
+}
 .progress-striped .red{
 	background:#d9534f;
-} 
+}
 .progress-striped .blue{
 	background:#428bca;
-} 
+}
 .progress-striped .orange {
 	background:#e94e02;
 }
@@ -496,7 +496,7 @@ li.second.w3l_search input:-ms-input-placeholder {
 }
 /*-- /agile_top_w3_post_sections --*/
 .img_wthee_post {
-    background: url(../images/pic.jpg)no-repeat center;
+    background: url(../images/ayungin.jpg)no-repeat center;
     background-size: cover;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -506,7 +506,7 @@ li.second.w3l_search input:-ms-input-placeholder {
     padding: 5em 3em 4em 3em;
 }
 .img_wthee_post1{
-    background: url(../images/pic1.jpg)no-repeat center;
+    background: url(../images/niftc.jpg)no-repeat center;
     background-size: cover;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -728,7 +728,7 @@ ul.icon_w3_social {
 	 -webkit-border-radius:50%;
 	 -o-border-radius: 50%;
 	 -moz-border-radius: 50%;
-	
+
 }
 .bottom_info_social {
     margin-top: 2em;
@@ -776,7 +776,7 @@ ul.icon_w3_social {
     -moz-box-shadow: 0 0px 24px 0 rgba(0, 0, 0, 0.06), 0 1px 0px 0 rgba(0, 0, 0, 0.02);
     -o-box-shadow: 0 0px 24px 0 rgba(0, 0, 0, 0.06), 0 1px 0px 0 rgba(0, 0, 0, 0.02);
     display: inline-block;
-	
+
     border: 1px solid #e8e5e5;
     width: 30%;
 }
@@ -1620,7 +1620,7 @@ div#holder1 {
 		-o-box-shadow: inset 0 0px 0px rgba(0,0,0,.075),0 0 3px #00C6D7;
 		-webkit-box-shadow: inset 0 0px 0px rgba(0,0,0,.075),0 0 3px #00C6D7;
 		-moz-box-shadow: inset 0 0px 0px rgba(0,0,0,.075),0 0 3px #00C6D7;
-}	
+}
 label {
     display: inline-block;
     max-width: 100%;
@@ -1810,7 +1810,7 @@ input.form-control1.icon {
     background: #e53238;
     box-shadow: 0px 2px 1px rgba(28, 28, 29, 0.42);
     font-weight: 600;
-	
+
 }
 .signin-form input[type="submit"]:hover {
 
@@ -1978,7 +1978,7 @@ margin: 0.5em 0 1.5em 0;
     -ms-transition: 0.5s all;
     -moz-transition: 0.5s all;
     cursor: pointer;
-} 
+}
 .icon-box:hover {
     background: #000;
 	transition:0.5s all;
@@ -1997,11 +1997,11 @@ margin: 0.5em 0 1.5em 0;
     float: left;
     width: 12.5%;
     height: 115px;
-    padding: 10px; 
+    padding: 10px;
     line-height: 1.4;
-    text-align: center;  
+    text-align: center;
     font-size: 12px;
-    list-style-type: none;	
+    list-style-type: none;
 }
 .codes .bs-glyphicons .glyphicon {
     margin-top: 5px;
@@ -2019,7 +2019,7 @@ margin: 0.5em 0 1.5em 0;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 	color: #777;
-} 
+}
 .codes .bs-glyphicons .glyphicon-class {
     display: block;
     text-align: center;
@@ -2071,7 +2071,7 @@ h3.icon-subheading {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 	color: #777;
-} 
+}
 .icons-page .bs-glyphicons .glyphicon-class {
     display: block;
     text-align: center;
@@ -2171,7 +2171,7 @@ li.list-group-item1 {
 .label {
 	font-weight: 300 !important;
 	border-radius:4px;
-}  
+}
 .grid_5{
 	background:none;
 	padding:2em 0;
@@ -2575,7 +2575,7 @@ li.second.logo.admin {
 	}
 }
 @media (max-width:1024px){
-	
+
 	.cir_agile_info {
 		min-height: 340px;
 		padding: 3em 2em;
@@ -2702,7 +2702,7 @@ li.second.logo.admin {
 		padding: 2em 2em 3em 2em;
 	}
 	.grid_3.grid_4 {
-  
+
       padding: 1em ! important;
 	}
 	.button_set_one.three .btn {
@@ -2940,7 +2940,7 @@ li.second.logo.admin {
     float: right;
     width: 77%;
 	}
-	
+
 }
 @media (max-width:640px){
 	.img_wthee_post {
