@@ -7,12 +7,12 @@ services:
       PYTHONUNBUFFERED: 1
       HASHID_SALT: "123456"
     build: .
-    volumes:
-      - .:/app
     depends_on:
       - db
     ports:
       - "5000:5000"
+    links:
+      - "db"
     volumes:
       - "./src:/opt/app"
   db:

@@ -3,8 +3,11 @@ COMPOSE_CMD = docker-compose -f $(COMPOSE_FILE)
 
 COMPOSE_RUN = $(COMPOSE_CMD) run --rm
 
-run:
+up:
 	$(COMPOSE_CMD) up -d
+
+run-web:
+	$(COMPOSE_RUN) web
 
 build:
 	$(COMPOSE_CMD) build
