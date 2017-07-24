@@ -28,10 +28,12 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 # env files
-
-app_id = 'r7MkF7n4MkfjgcB4kqT4oyfEx7KeFyME'
-web_register_url = 'http://developer.globelabs.com.ph/dialog/oauth?app_id=r7MkF7n4MkfjgcB4kqT4oyfEx7KeFyME'
+GLOBE_URL = 'http://developer.globelabs.com.ph/'
+APP_ID = 'r7MkF7n4MkfjgcB4kqT4oyfEx7KeFyME'
+REGISTER_URL = 'dialog/oauth?app_id=r7MkF7n4MkfjgcB4kqT4oyfEx7KeFyME'
+TOKEN_URL = "oauth/access_token?app_id=%s&app_secret=%s&code=%s"
 sms_register_num = '21584856'
+APP_SECRET = '382b031850c429f910fdf3d408d51a4824ef8aeed1bc39f4d039fe55bb1716d9'
 sms_register_num_crosstelco = '29290584856'
 # Application definition
 
