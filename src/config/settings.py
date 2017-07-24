@@ -27,7 +27,12 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+# env files
 
+app_id = 'r7MkF7n4MkfjgcB4kqT4oyfEx7KeFyME'
+web_register_url = 'http://developer.globelabs.com.ph/dialog/oauth?app_id=r7MkF7n4MkfjgcB4kqT4oyfEx7KeFyME'
+sms_register_num = '21584856'
+sms_register_num_crosstelco = '29290584856'
 # Application definition
 
 INSTALLED_APPS = [
@@ -145,14 +150,3 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'assets'),
 ]
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
-import dj_database_url
-# Update database configuration with $DATABASE_URL.
-db_from_env = dj_database_url.config(conn_max_age=500)
-DATABASES['default'].update(db_from_env)
-
-# Honor the 'X-Forwarded-Proto' header for request.is_secure()
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-
-# Allow all host headers
-ALLOWED_HOSTS = ['*']
