@@ -27,7 +27,12 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+# env files
 
+app_id = 'r7MkF7n4MkfjgcB4kqT4oyfEx7KeFyME'
+web_register_url = 'http://developer.globelabs.com.ph/dialog/oauth?app_id=r7MkF7n4MkfjgcB4kqT4oyfEx7KeFyME'
+sms_register_num = '21584856'
+sms_register_num_crosstelco = '29290584856'
 # Application definition
 
 INSTALLED_APPS = [
