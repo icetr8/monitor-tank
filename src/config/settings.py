@@ -30,7 +30,7 @@ ALLOWED_HOSTS = []
 # env files
 GLOBE_URL = 'http://developer.globelabs.com.ph/'
 DEVAPI_URL = 'https://devapi.globelabs.com.ph/'
-APP_ID = 'ynr9Iy9XAzhMoT4EM6iXMKhB5n8dIgxq '
+APP_ID = 'ynr9Iy9XAzhMoT4EM6iXMKhB5n8dIgxq'
 REGISTER_URL = 'dialog/oauth?app_id=ynr9Iy9XAzhMoT4EM6iXMKhB5n8dIgxq'
 TOKEN_URL = "oauth/access_token?app_id=%s&app_secret=%s&code=%s"
 sms_register_num = '21583631'
