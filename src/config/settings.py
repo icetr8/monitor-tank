@@ -29,12 +29,15 @@ ALLOWED_HOSTS = []
 
 # env files
 GLOBE_URL = 'http://developer.globelabs.com.ph/'
-APP_ID = 'r7MkF7n4MkfjgcB4kqT4oyfEx7KeFyME'
-REGISTER_URL = 'dialog/oauth?app_id=r7MkF7n4MkfjgcB4kqT4oyfEx7KeFyME'
+DEVAPI_URL = 'https://devapi.globelabs.com.ph/'
+APP_ID = 'ynr9Iy9XAzhMoT4EM6iXMKhB5n8dIgxq '
+REGISTER_URL = 'dialog/oauth?app_id=ynr9Iy9XAzhMoT4EM6iXMKhB5n8dIgxq'
 TOKEN_URL = "oauth/access_token?app_id=%s&app_secret=%s&code=%s"
-sms_register_num = '21584856'
-APP_SECRET = '382b031850c429f910fdf3d408d51a4824ef8aeed1bc39f4d039fe55bb1716d9'
-sms_register_num_crosstelco = '29290584856'
+sms_register_num = '21583631'
+APP_SECRET = '3ff601c835c8d78d06f0ea98ff5aa7c8009340d9a11cf6cdcb80348880c0221a'
+sms_register_num_crosstelco = '29290583631'
+SMS_MT_URL = 'smsmessaging/v1/outbound/%s/requests?access_token=%s' # senderAddress, access_token
+
 # Application definition
 
 INSTALLED_APPS = [
