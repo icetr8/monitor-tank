@@ -10,6 +10,7 @@ from django.conf import settings
 import ast
 
 globe_client = GlobeClient(settings.GLOBE_URL)
+devapi_client = GlobeClient(settings.DEVAPI_URL)
 
 
 class Index(APIView):
@@ -64,5 +65,6 @@ class SMSRECIEVER(APIView):
         serializer = ReportSerializer(data=data)
         if serializer.is_valid():
             serializer.save()
+            devapi_client.send_sms_subscriber()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

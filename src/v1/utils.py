@@ -22,3 +22,6 @@ class GlobeClient(object):
         token_json['status_code'] = token.status_code
 
         return token_json
+
+    def send_sms_subscriber(self, subscriber_num, access_token, message):
+        pass
