@@ -7,6 +7,7 @@ from .serializer import ReportSerializer, SuscriberSerializer
 from .models import Report, Suscriber
 from .utils import GlobeClient
 from django.conf import settings
+import ast
 
 globe_client = GlobeClient(settings.GLOBE_URL)
 
@@ -35,6 +36,32 @@ class Suscriber(APIView):
 
     def post(self, request,):
         serializer = SuscriberSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class SMSRECIEVER(APIView):
+    def get(self, request,):
+        return Response({"v1": "SMS Reciever"})
+
+    def post(self, request,):
+        context = request.data['inboundSMSMessageList']['inboundSMSMessage'][0]['message']
+        context = '{' + context + '}'
+        context_dict = {}
+        try:
+            context_dict = ast.literal_eval(context)
+        except SyntaxError:
+            return Response({'error': 'SyntaxError'}, status=status.HTTP_400_BAD_REQUEST)
+        data = {}
+        data['context'] = context
+        data['pH_level'] = context_dict.get('ph', '')
+        data['temperature_level'] = context_dict.get('temp', '')
+        data['oxygen_level'] = context_dict.get('oxygen', '')
+        data['water_level'] = context_dict.get('water', '')
+
+        serializer = ReportSerializer(data=data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)

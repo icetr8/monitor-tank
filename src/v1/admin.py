@@ -24,8 +24,32 @@ class SuscriberAdmin(admin.ModelAdmin):
             )
     readonly_fields = (
             )
+
+
 class ReportAdmin(admin.ModelAdmin):
-    pass
+    list_display = (
+            'created_time',
+            'id',
+            'pH_level',
+            'temperature_level',
+            'water_level',
+            'oxygen_level',
+
+            )
+    list_filter = (
+            'created_time',
+            'id',
+            'pH_level',
+            'temperature_level',
+            'water_level',
+            'oxygen_level',
+           )
+    search_fields = (
+            )
+    readonly_fields = (
+            'context',
+            )
+
 
 admin.site.register(Suscriber, SuscriberAdmin)
 admin.site.register(Report, ReportAdmin)

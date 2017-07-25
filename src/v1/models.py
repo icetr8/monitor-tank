@@ -10,5 +10,10 @@ class Suscriber(Base):
     address = models.CharField(max_length=50)
     role = models.CharField(max_length=50)
 
+
 class Report(Base):
-    context = models.TextField()
+    context = models.TextField(max_length=50)
+    pH_level = models.FloatField(max_length=10, null=True, blank=True)
+    oxygen_level = models.FloatField(max_length=10, null=True, blank=True)
+    temperature_level = models.FloatField(max_length=10, null=True, blank=True)
+    water_level = models.CharField(max_length=20, null=True, blank=True)
