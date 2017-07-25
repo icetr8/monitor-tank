@@ -36,7 +36,8 @@ TOKEN_URL = "oauth/access_token?app_id=%s&app_secret=%s&code=%s"
 sms_register_num = '21583631'
 APP_SECRET = '3ff601c835c8d78d06f0ea98ff5aa7c8009340d9a11cf6cdcb80348880c0221a'
 sms_register_num_crosstelco = '29290583631'
-SMS_MT_URL = 'smsmessaging/v1/outbound/%s/requests?access_token=%s' # senderAddress, access_token
+SMS_MT_URL = "smsmessaging/v1/outbound/{0}/requests?access_token={1}"  # senderAddress, access_token
+SHORTCODE = '3631'
 
 # Application definition
 
@@ -137,7 +138,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Manila'
 
 USE_I18N = True
 

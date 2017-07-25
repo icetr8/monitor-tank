@@ -12,7 +12,7 @@ class GlobeClient(object):
     def _request(self, endpoint, method='get', data=None):
         method = method.lower()
         url = urljoin(self.url, endpoint)
-        resp = getattr(requests, method)(url, json=data)
+        resp = getattr(requests, method)(url, json=data,)
         return resp
 
     def get_access_token(self, code,):
@@ -24,4 +24,14 @@ class GlobeClient(object):
         return token_json
 
     def send_sms_subscriber(self, subscriber_num, access_token, message):
-        pass
+        url = (settings.SMS_MT_URL.format(settings.SHORTCODE, access_token))
+        data = {"outboundSMSMessageRequest": {
+               "senderAddress": settings.SHORTCODE,
+               "outboundSMSTextMessage": {"message": str(message)},
+               "address": int(subscriber_num)
+             }
+            }
+        resp = requests.post(settings.DEVAPI_URL+url, json=data)
+        resp_json = resp.json()
+        resp_json['status_code'] = resp.status_code
+        return resp_json
