@@ -250,11 +250,12 @@
 									<tr>
 										<td>
 									 	{{ sub.subscriber_number}}
+										<input type="hidden" name="id" value="{{ sub.id}}">
 										</td>
 										{% if sub.name %}
 										<td>{{ sub.name}}</td>
 										{% else %}
-										<input type="hidden" name="id" value="{{ sub.id}}">
+
 										<td><input type="text" name="name" class="form-control" placeholder="Fill name"></td>
 										{% endif %}
 										{% if sub.address %}

@@ -33,16 +33,17 @@ class Index(View):
 
     def post(self, request, *args, **kwargs):
         sub_id = request.POST.get('id')
+        print sub_id
         sub = Subscriber.objects.get(id=sub_id)
         name = request.POST.get('name', '')
         address = request.POST.get('address', '')
         role = request.POST.get('role', '')
-
+        print role
         if name:
             sub.name = name
         if address:
             sub.address = address
         if role:
-            sub.name = role
+            sub.role = role
         sub.save()
         return redirect('/')

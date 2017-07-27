@@ -65,7 +65,7 @@ class SMSRECIEVER(APIView):
 
         serializer = ReportSerializer(data=data)
         if serializer.is_valid():
-            # serializer.save()
+            serializer.save()
             subscriber_list = Subscriber.objects.all()
             message = sms.parse(Report)
             for subs in subscriber_list:
