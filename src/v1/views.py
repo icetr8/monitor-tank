@@ -32,7 +32,7 @@ class Suscriber(APIView):
                 if serializer.is_valid():
                     serializer.save()
                     return HttpResponse("SUCCESFULLY REGISTERED AS SUSBCRIBER")
-            return HttpResponse("TRY TO CONFIRM NUMBER AGAIN")
+            return HttpResponse(serializer.errors)
         return Response({"v1": "Register a user"})
 
     def post(self, request,):
