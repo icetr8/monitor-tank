@@ -1,9 +1,9 @@
 from django.contrib import admin
-from .models import Report, Suscriber
+from .models import Report, Subscriber
 # Register your models here.
 
 
-class SuscriberAdmin(admin.ModelAdmin):
+class SubscriberAdmin(admin.ModelAdmin):
     list_display = (
             'id',
             'subscriber_number',
@@ -51,5 +51,5 @@ class ReportAdmin(admin.ModelAdmin):
             )
 
 
-admin.site.register(Suscriber, SuscriberAdmin)
+admin.site.register(Subscriber, SubscriberAdmin)
 admin.site.register(Report, ReportAdmin)

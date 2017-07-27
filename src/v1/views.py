@@ -4,7 +4,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from .serializer import ReportSerializer, SuscriberSerializer
-from .models import Report, Suscriber
+from .models import Report, Subscriber
 from .utils import GlobeClient
 from django.conf import settings
 import ast
@@ -57,14 +57,16 @@ class SMSRECIEVER(APIView):
             return Response({'error': 'SyntaxError'}, status=status.HTTP_400_BAD_REQUEST)
         data = {}
         data['context'] = context
-        data['pH_level'] = context_dict.get('ph', '')
-        data['temperature_level'] = context_dict.get('temp', '')
-        data['oxygen_level'] = context_dict.get('oxygen', '')
-        data['water_level'] = context_dict.get('water', '')
+        data['pH_level'] = context_dict.get('ph', 0)
+        data['temperature_level'] = context_dict.get('temp', 0)
+        data['oxygen_level'] = context_dict.get('oxygen', 0)
+        data['water_level'] = context_dict.get('water', 'normal')
 
         serializer = ReportSerializer(data=data)
         if serializer.is_valid():
             serializer.save()
-            devapi_client.send_sms_subscriber()
+            subscriber_list = Subscriber.objects.all()
+            for subs in subscriber_list:
+                devapi_client.send_sms_subscriber(subs.subscriber_number, subs.access_token, context)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

@@ -37,40 +37,63 @@
 		<!-- //w3_agileits_top_nav-->
 		<!-- /inner_content-->
 				<div class="inner_content">
+
 				    <!-- /inner_content_w3_agile_info-->
 					<div class="inner_content_w3_agile_info">
-						<!-- /w3ls_agile_circle_progress-->
-						<div class="w3ls_agile_circle_progress agile_info_shadow">
+						<!-- /agile_top_w3_grids-->
+					   <div class="agile_top_w3_grids">
+					          <ul class="ca-menu">
+								<div class="col-md-3">
+									<li>
+										<a href="#">
 
-							<div class="cir_agile_info ">
-							<h3 class="w3_inner_tittle">METER READINGS</h3>
-									<div class="skill-grids">
-										<div class="skills-grid text-center">
-											<div class="circle" id="circles-1"></div>
-											<p>pH LEVEL</p>
-										</div>
-										<div class="skills-grid text-center">
-											<div class="circle" id="circles-2"></div>
-											<p>Temparature LEVEL</p>
-										</div>
-										<div class="skills-grid text-center">
-											<div class="circle" id="circles-3"></div>
+											<i class="fa fa-flask" aria-hidden="true"></i>
+											<div class="ca-content">
+												<h4 class="ca-main">{{ pH_level }}</h4>
+												<h3 class="ca-sub">pH Level</h3>
+											</div>
+										</a>
+									</li>
+								</div>
+								<div class="col-md-3">
+									<li>
+										<a href="#">
+										  <i class="fa fa-fire" aria-hidden="true"></i>
+											<div class="ca-content">
+												<h4 class="ca-main one">{{ temperature_level }}&#8451 </h4>
+												<h3 class="ca-sub one">Temperature Level</h3>
+											</div>
+										</a>
+									</li>
+								</div>
+									<div class="col-md-3">
+									<li>
+										<a href="#">
+											<i class="fa fa-tachometer" aria-hidden="true"></i>
+											<div class="ca-content">
+											<h4 class="ca-main two">{{ oxygen_level}}</h4>
+												<h3 class="ca-sub two">Oxygen Level</h3>
+											</div>
+										</a>
+									</li>
+								</div>
+								<div class="col-md-3">
 
-											<p>Dissolve Oxygen Level</p>
-										</div>
-										<div class="skills-grid text-center">
-											<div class="circle" id="circles-4"></div>
-											<p>WATER LEVEL</p>
-										</div>
+									<li>
+										<a href="#">
+											<i class="fa fa-anchor" aria-hidden="true"></i>
+											<div class="ca-content">
+												<h4 class="ca-main three">{{ water_level}}</h4>
+												<h3 class="ca-sub three">WATER LEVEL</h3>
+											</div>
+										</a>
+									</li>
+								</div>
+									<div class="clearfix"></div>
+								</ul>
+					   </div>
+					 <!-- //agile_top_w3_grids-->
 
-
-
-									 <div class="clearfix"></div>
-
-							</div>
-						</div>
-					</div>
-					<!-- /w3ls_agile_circle_progress-->
 						<!-- /agile_top_w3_post_sections-->
 							<div class="agile_top_w3_post_sections">
 							       <div class="col-md-6 agile_top_w3_post agile_info_shadow">
@@ -78,7 +101,7 @@
 										         <h3 class="w3_inner_tittle" style="color:black">Latest Report</h3>
 												<div class="stats-wrap">
 													<div class="count_info"><h4 class="count">65,800,587 </h4><span class="year" style="color:black">Total Ayungin</span></div>
-													<div class="year-info"><p class="text-no" style="color:black">150 </p><span class="year" style="color:black">Last Year production</span></div>
+
 													<div class="clearfix"></div>
 												</div>
 												<div class="stats-wrap">
@@ -87,13 +110,13 @@
 													<div class="clearfix"></div>
 												</div>
 												<div class="stats-wrap">
-													<div class="count_info"><h4 class="count" style="color:black">11-12-2017 </h4><span class="year" style="color:black">Last Update</span></div>
-													<div class="year-info"><p class="text-no" style="color:black">5</p><span class="year" style="color:black">This Week</span></div>
+													<div class="count_info"><h4 class="count" style="color:black">{{ last_update }} </h4><span class="year" style="color:black">Last Update</span></div>
+													<div class="year-info"><p class="text-no" style="color:black">{{ pH_level }}</p><span class="year" style="color:black">PH LEVEL</span></div>
 													<div class="clearfix"></div>
 												</div>
 												<div class="stats-wrap">
-													<div class="count_info"><h4 class="count" style="color:black">NORMAL</h4><span class="year" style="color:black">Water Level</span></div>
-													<div class="year-info"><p class="text-no" style="color:black">10 </p><span class="year" style="color:black">This Day</span></div>
+													<div class="count_info"><h4 class="count" style="color:black">{{ water_level }}</h4><span class="year" style="color:black">Water Level</span></div>
+													<div class="year-info"><p class="text-no" style="color:black">{{ temperature_level }} </p><span class="year" style="color:black">TEMPERATURE</span></div>
 													<div class="clearfix"></div>
 												</div>
 
@@ -101,7 +124,7 @@
 									   </div>
 									    <div class="col-md-6 agile_top_w3_post_info agile_info_shadow">
 										    <div class="img_wthee_post1">
-											<h3 class="w3_inner_tittle"> Last Update</h3>
+											<h3 class="w3_inner_tittle"> Latest Report hours ago :</h3>
 										       	<div class="main-example">
 													<div class="clock"></div>
 													<div class="message"></div>
@@ -199,10 +222,10 @@
 							 <h3 class="w3_inner_tittle two">Register a SMS Suscriber </h3>
 									<div class="form-body">
 										<strong style="font-size:120%">OPTION 1</strong>
-										<ul style="font-size:120%">1. Subscribers need to text INFO to 21589850 (Cross-telco: 29290589850)</ul>
+										<ul style="font-size:120%">1. Subscribers need to text INFO to {{ sms_num}} (Cross-telco: {{ sms_num_cross_telco }})</ul>
 										<ul style="font-size:120%">2. Upon receipt of the ‘welcome message’, the subscriber needs to reply YES</ul>
 										<strong style="font-size:120%">OPTION 2</strong>
-										<ul style="font-size:120%">1. Platform redirects your subscribers to this url: <a href="http://developer.globelabs.com.ph/dialog/oauth?app_id=GK5AseLX4XH9diMpoocXAeH4EKjpsK69">http://developer.globelabs.com.ph/dialog/oauth?app_id=GK5AseLX4XH9diMpoocXAeH4EKjpsK69</a> </ul>
+										<ul style="font-size:120%">1. Platform redirects your subscribers to this url: <a href="{{ register_url }}">http://developer.globelabs.com.ph/dialog/oauth?app_id=GK5AseLX4XH9diMpoocXAeH4EKjpsK69</a> </ul>
 										<ul style="font-size:120%">The page will then be redirected to the redirect uri of the application, and a ‘code’ parameter will be passed to it. </ul>
 										<ul style="font-size:120%">The page will be redirected, and an SMS with confirmation code will be sent to the subscriber </ul>
 										<ul style="font-size:120%">The subscriber needs to key-in on the page the received confirmation code and click the button Confirm to authorize the subscriber </ul>
@@ -221,30 +244,15 @@
 									</tr>
 								</thead>
 								<tbody>
+									{% for sub in subscriber%}
 									<tr>
-									<td>09953274805</td>
-									<td>Angelo Suinan</td>
-									<td>Pasig City</td>
-									<td>Proponents</td>
+										<td>
+									 	{{ sub.subscriber_number}}
+										<td><input type="text" class="form-control" placeholder="Fill name"></td>
+										<td><input type="text" class="form-control" placeholder="Fill address"></td>
+										<td><input type="text" class="form-control" placeholder="Fill role"></td>
 									</tr>
-									<tr>
-									<td>09953274805</td>
-									<td>Daniel Punzalan</td>
-									<td>Pasig City</td>
-									<td>Proponents</td>
-									</tr>
-									<tr>
-									<td>09953264805</td>
-									<td>Teejay Jamlang</td>
-									<td>Marikina City</td>
-									<td>Proponents</td>
-									</tr>
-									<tr>
-									<td>09953274805</td>
-									<td>Roman Pol</td>
-									<td>Binangonan</td>
-									<td>Proponents</td>
-									</tr>
+										 {% endfor %}
 								</tbody>
 								</table>
 					</div>
@@ -275,68 +283,16 @@
 var chart = AmCharts.makeChart("chartdiv", {
     "theme": "light",
     "type": "serial",
-    "startDuration": 2,
-    "dataProvider": [{
-        "country": "Aug 1, 2017",
-        "visits": 4.5,
-        "color": "#FF0F00"
-    }, {
-        "country": "Aug 2, 2017",
-        "visits": 7,
-        "color": "#FF6600"
-    }, {
-        "country": "Aug 3, 2017",
-        "visits": 5,
-        "color": "#FF9E01"
-    }, {
-        "country": "Aug 4, 2017",
-        "visits": 7,
-        "color": "#FCD202"
-    }, {
-        "country": "Aug 5, 2017",
-        "visits": 6,
-        "color": "#F8FF01"
-    }, {
-        "country": "Aug 6, 2017",
-        "visits": 7,
-        "color": "#B0DE09"
-    }, {
-        "country": "Aug 7, 2017",
-        "visits": 7,
-        "color": "#04D215"
-    }, {
-        "country": "Aug 8, 2017",
-        "visits": 7,
-        "color": "#0D8ECF"
-    }, {
-        "country": "Aug 9, 2017",
-        "visits": 7,
-        "color": "#0D52D1"
-    }, {
-        "country": "Aug 10, 2017",
-        "visits": 7,
-        "color": "#2A0CD0"
-    }, {
-        "country": "Aug 11, 2017",
-        "visits": 7,
-        "color": "#8A0CCF"
-    }, {
-        "country": "Aug 12, 2017",
-        "visits": 7,
-        "color": "#CD0D74"
-    }, {
-        "country": "Aug 13, 2017",
-        "visits": 7,
-        "color": "#754DEB"
-    }, {
-        "country": "Aug 15, 2017",
-        "visits": 7,
-        "color": "#DDDDDD"
-    }, {
-        "country": "Aug 16, 2017",
-        "visits": 10,
-        "color": "#333333"
-    }],
+    "startDuration": 3,
+    "dataProvider": [
+			{% for report in reports %}
+			{
+				"country": "{{report.created_time}}",
+				"visits": "{{report.pH_level}}",
+				"color": "#0D8ECF"
+			},
+			{% endfor %}
+			],
     "valueAxes": [{
         "position": "left",
         "axisAlpha":0,
@@ -370,116 +326,6 @@ var chart = AmCharts.makeChart("chartdiv", {
      }
 
 }, 0);
-</script>
-<!-- Chart code -->
-<script>
-var chart = AmCharts.makeChart("chartdiv1", {
-    "type": "serial",
-	"theme": "light",
-    "legend": {
-        "horizontalGap": 10,
-        "maxColumns": 1,
-        "position": "right",
-		"useGraphSettings": true,
-		"markerSize": 10
-    },
-    "dataProvider": [{
-        "year": 2017,
-        "europe": 2.5,
-        "namerica": 2.5,
-        "asia": 2.1,
-        "lamerica": 0.3,
-        "meast": 0.2,
-        "africa": 0.1
-    }, {
-        "year": 2016,
-        "europe": 2.6,
-        "namerica": 2.7,
-        "asia": 2.2,
-        "lamerica": 0.3,
-        "meast": 0.3,
-        "africa": 0.1
-    }, {
-        "year": 2015,
-        "europe": 2.8,
-        "namerica": 2.9,
-        "asia": 2.4,
-        "lamerica": 0.3,
-        "meast": 0.3,
-        "africa": 0.1
-    }],
-    "valueAxes": [{
-        "stackType": "regular",
-        "axisAlpha": 0.5,
-        "gridAlpha": 0
-    }],
-    "graphs": [{
-        "balloonText": "<b>[[title]]</b><br><span style='font-size:14px'>[[category]]: <b>[[value]]</b></span>",
-        "fillAlphas": 0.8,
-        "labelText": "[[value]]",
-        "lineAlpha": 0.3,
-        "title": "Europe",
-        "type": "column",
-		"color": "#000000",
-        "valueField": "europe"
-    }, {
-        "balloonText": "<b>[[title]]</b><br><span style='font-size:14px'>[[category]]: <b>[[value]]</b></span>",
-        "fillAlphas": 0.8,
-        "labelText": "[[value]]",
-        "lineAlpha": 0.3,
-        "title": "North America",
-        "type": "column",
-		"color": "#000000",
-        "valueField": "namerica"
-    }, {
-        "balloonText": "<b>[[title]]</b><br><span style='font-size:14px'>[[category]]: <b>[[value]]</b></span>",
-        "fillAlphas": 0.8,
-        "labelText": "[[value]]",
-        "lineAlpha": 0.3,
-        "title": "Asia-Pacific",
-        "type": "column",
-		"color": "#000000",
-        "valueField": "asia"
-    }, {
-        "balloonText": "<b>[[title]]</b><br><span style='font-size:14px'>[[category]]: <b>[[value]]</b></span>",
-        "fillAlphas": 0.8,
-        "labelText": "[[value]]",
-        "lineAlpha": 0.3,
-        "title": "Latin America",
-        "type": "column",
-		"color": "#000000",
-        "valueField": "lamerica"
-    }, {
-        "balloonText": "<b>[[title]]</b><br><span style='font-size:14px'>[[category]]: <b>[[value]]</b></span>",
-        "fillAlphas": 0.8,
-        "labelText": "[[value]]",
-        "lineAlpha": 0.3,
-        "title": "Middle-East",
-        "type": "column",
-		"color": "#000000",
-        "valueField": "meast"
-    }, {
-        "balloonText": "<b>[[title]]</b><br><span style='font-size:14px'>[[category]]: <b>[[value]]</b></span>",
-        "fillAlphas": 0.8,
-        "labelText": "[[value]]",
-        "lineAlpha": 0.3,
-        "title": "Africa",
-        "type": "column",
-		"color": "#000000",
-        "valueField": "africa"
-    }],
-    "rotate": true,
-    "categoryField": "year",
-    "categoryAxis": {
-        "gridPosition": "start",
-        "axisAlpha": 0,
-        "gridAlpha": 0,
-        "position": "left"
-    },
-    "export": {
-    	"enabled": true
-     }
-});
 </script>
 
 	<!-- //amcharts -->
@@ -543,31 +389,21 @@ var chart = AmCharts.makeChart("chartdiv1", {
 								</script>
 <!--//skycons-icons-->
 <!-- //js -->
-<script src="{% static "js/screenfull.js" %}"></script>
-		<script>
-		$(function () {
-			$('#supported').text('Supported/allowed: ' + !!screenfull.enabled);
 
-			if (!screenfull.enabled) {
-				return false;
-			}
-
-
-
-			$('#toggle').click(function () {
-				screenfull.toggle($('#container')[0]);
-			});
-		});
-		</script>
 		<script src="{% static "js/flipclock.js" %}"></script>
 
 	<script type="text/javascript">
 		var clock;
 
+		var update = new Date("{{ last_update }}");
+		console.log(update);
+		var now_date = new Date();
+		console.log(now_date)
+		var hours = Math.abs(now_date - update) / 36e5;
+		diff = now_date.valueOf() - update.valueOf();
+		var dura = diff/1000;
 		$(document).ready(function() {
-
-			clock = $('.clock').FlipClock({
-		        clockFace: 'HourlyCounter'
+			clock = $('.clock').FlipClock(dura,{
 		    });
 		});
 	</script>
