@@ -253,18 +253,18 @@
 										<input type="hidden" name="id" value="{{ sub.id}}">
 										</td>
 										{% if sub.name %}
-										<td>{{ sub.name}}</td>
+										<td><input type="text" name="name" class="form-control" value="{{sub.name}}"></td>
 										{% else %}
 
 										<td><input type="text" name="name" class="form-control" placeholder="Fill name"></td>
 										{% endif %}
 										{% if sub.address %}
-										<td>{{ sub.address}}</td>
+										<td><input type="text" name="address" class="form-control" value="{{ sub.address }}"></td>
 										{% else %}
 										<td><input type="text" name="address" class="form-control" placeholder="Fill address"></td>
 										{% endif %}
 										{% if sub.role%}
-										<td>{{ sub.role}}</td>
+										<td><input type="text" name="role" class="form-control" value="{{ sub.role }}"></td>
 										{% else %}
 										<td><input type="text" name="role" class="form-control" placeholder="Fill role"></td>
 										{% endif %}
