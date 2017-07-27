@@ -5,12 +5,13 @@ from rest_framework.response import Response
 from rest_framework import status
 from .serializer import ReportSerializer, SuscriberSerializer
 from .models import Report, Subscriber
-from .utils import GlobeClient
+from .utils import GlobeClient, SMS
 from django.conf import settings
 import ast
 
 globe_client = GlobeClient(settings.GLOBE_URL)
 devapi_client = GlobeClient(settings.DEVAPI_URL)
+sms = SMS()
 
 
 class Index(APIView):
@@ -64,9 +65,11 @@ class SMSRECIEVER(APIView):
 
         serializer = ReportSerializer(data=data)
         if serializer.is_valid():
-            serializer.save()
+            # serializer.save()
             subscriber_list = Subscriber.objects.all()
+            message = sms.parse(Report)
             for subs in subscriber_list:
-                devapi_client.send_sms_subscriber(subs.subscriber_number, subs.access_token, context)
+                if subs.name != 'SMS_MODULE':
+                    devapi_client.send_sms_subscriber(subs.subscriber_number, subs.access_token, message)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

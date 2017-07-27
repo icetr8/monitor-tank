@@ -15,7 +15,7 @@ DjangoRest Heroku Postgres
             "dateTime":"Fri Nov 22 2013 12:12:13 GMT+0000 (UTC)",
             "destinationAddress":"tel:21581234",
             "messageId":null,
-            "message":" 'ph': '7', 'temp': '9', 'oxygen': '30', 'water': 'normal' ",
+            "message":" 'ph': '7', 'temp': '29', 'oxygen': '13', 'water': 'normal' ",
             "resourceURL":null,
             "senderAddress":"tel:+639171234567"
          }
@@ -25,4 +25,8 @@ DjangoRest Heroku Postgres
        "totalNumberOfPendingMessages":null
    }
 }
+```
+In SMS type the following format
+```
+'ph': '7', 'temp': '39', 'oxygen': '13', 'water': 'normal'
 ```
