@@ -34,6 +34,32 @@ class GlobeClient(object):
         resp = requests.post(settings.DEVAPI_URL+url, json=data)
         resp_json = resp.json()
         resp_json['status_code'] = resp.status_code
-        print url
-        print resp_json
         return resp_json
+
+
+class SMS(object):
+
+    def parse(self, Report):
+        temperature_level = Report.objects.exclude(temperature_level__isnull=True).exclude(temperature_level__exact=0)
+        temp = temperature_level.latest('created_time').temperature_level
+        pH_level = Report.objects.exclude(pH_level__isnull=True).exclude(pH_level__exact=0)
+        ph = pH_level.latest('created_time').pH_level
+        water_level = Report.objects.exclude(water_level__isnull=True).exclude(water_level__exact='')
+        water = water_level.latest('created_time').water_level
+        oxygen_level = Report.objects.exclude(oxygen_level__isnull=True).exclude(oxygen_level__exact=0)
+        oxygen = oxygen_level.latest('created_time').oxygen_level
+
+        message = "pH level is : " + str(ph)
+
+        if ph > 5.5 and ph < 8.5:
+            message += " ,fairly normal."
+        elif ph > 8.5:
+            message += " ,alkaline may be contaminated check the tank."
+        elif ph < 5.5:
+            message += " ,acidic, now activating the 2nd pump. check the tank."
+
+        message += " Temperature level is : " + str(temp) + " degrees Celsius."
+
+        message += " Water Level is " + water
+
+        return message

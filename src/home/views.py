@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic import View
 from v1.models import Subscriber, Report
 from django.conf import settings
@@ -11,7 +11,7 @@ class Index(View):
     def get(self, request, *args, **kwargs):
         context = {}
         subs = Subscriber.objects.all()
-        reports = reversed(Report.objects.all().order_by('-id')[:10])
+        reports = reversed(Report.objects.all().order_by('-id')[:5])
         last_update = Report.objects.latest('id')
         context['subscriber'] = subs
         context['reports'] = reports
@@ -30,3 +30,19 @@ class Index(View):
         context['sms_num'] = settings.SMS_REGISTER_NUM
         context['sms_num_cross_telco'] = settings.SMS_REGISTER_NUM_CROSSTELCO
         return render(request, self.template_name, context)
+
+    def post(self, request, *args, **kwargs):
+        sub_id = request.POST.get('id')
+        sub = Subscriber.objects.get(id=sub_id)
+        name = request.POST.get('name', '')
+        address = request.POST.get('address', '')
+        role = request.POST.get('role', '')
+
+        if name:
+            sub.name = name
+        if address:
+            sub.address = address
+        if role:
+            sub.name = role
+        sub.save()
+        return redirect('/')

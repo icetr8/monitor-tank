@@ -6,13 +6,13 @@ from core.models import Base
 class Subscriber(Base):
     subscriber_number = models.CharField(unique=True, max_length=11)
     access_token = models.CharField(unique=True, max_length=100)
-    name = models.CharField(max_length=20)
-    address = models.CharField(max_length=50)
-    role = models.CharField(max_length=50)
+    name = models.CharField(max_length=20, blank=True, default="")
+    address = models.CharField(max_length=50, blank=True, default="")
+    role = models.CharField(max_length=50, blank=True, default="")
 
 
 class Report(Base):
-    context = models.TextField(max_length=50)
+    context = models.TextField(max_length=300)
     pH_level = models.FloatField(max_length=10, default=0)
     oxygen_level = models.FloatField(max_length=10, default=0)
     temperature_level = models.FloatField(max_length=10, default=0)
