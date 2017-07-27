@@ -34,4 +34,6 @@ class GlobeClient(object):
         resp = requests.post(settings.DEVAPI_URL+url, json=data)
         resp_json = resp.json()
         resp_json['status_code'] = resp.status_code
+        print url
+        print resp_json
         return resp_json

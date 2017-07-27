@@ -37,7 +37,7 @@ SMS_REGISTER_NUM = '21583631'
 APP_SECRET = '346f6c06ecf0272c39db89fc7ce93974e676c3cd444b354ddf21034166a5f6f8'
 SMS_REGISTER_NUM_CROSSTELCO = '29290583631'
 SMS_MT_URL = "smsmessaging/v1/outbound/{0}/requests?access_token={1}"  # senderAddress, access_token
-SHORTCODE = '3631'
+SHORTCODE = '8231'
 
 # Application definition
 
