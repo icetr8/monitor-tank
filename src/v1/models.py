@@ -4,8 +4,8 @@ from core.models import Base
 
 
 class Subscriber(Base):
-    subscriber_number = models.CharField(max_length=11)
-    access_token = models.CharField(max_length=100)
+    subscriber_number = models.CharField(unique=True, max_length=11)
+    access_token = models.CharField(unique=True, max_length=100)
     name = models.CharField(max_length=20)
     address = models.CharField(max_length=50)
     role = models.CharField(max_length=50)
