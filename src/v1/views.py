@@ -60,7 +60,7 @@ class SMSRECIEVER(APIView):
         data['pH_level'] = context_dict.get('ph', 0)
         data['temperature_level'] = context_dict.get('temp', 0)
         data['oxygen_level'] = context_dict.get('oxygen', 0)
-        data['water_level'] = context_dict.get('water', 0)
+        data['water_level'] = context_dict.get('water', 'normal')
 
         serializer = ReportSerializer(data=data)
         if serializer.is_valid():
