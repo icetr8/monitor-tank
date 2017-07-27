@@ -52,11 +52,11 @@ class SMS(object):
         message = "pH level is : " + str(ph)
 
         if ph > 5.5 and ph < 8.5:
-            message += " ,fairly normal."
+            message += " , fairly normal."
         elif ph > 8.5:
-            message += " ,alkaline may be contaminated check the tank."
+            message += " , alkaline may be contaminated check the tank."
         elif ph < 5.5:
-            message += " ,acidic, now activating the 2nd pump. check the tank."
+            message += " , acidic, now activating the 2nd pump. check the tank."
 
         message += " Temperature level is : " + str(temp) + " degrees Celsius."
 
