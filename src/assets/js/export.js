@@ -1547,7 +1547,7 @@ if ( !AmCharts.translations[ "export" ][ "en" ] ) {
 						l.x2 = p.x2;
 						l.y2 = p.y2;
 
-						// // RESET INTERNAL FLAGS	
+						// // RESET INTERNAL FLAGS
 						// _this.drawing.buffer.isDrawing = true;
 						// _this.drawing.buffer.isPressed = true;
 						// _this.drawing.buffer.hasLine = true;

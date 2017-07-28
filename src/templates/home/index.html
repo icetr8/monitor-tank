@@ -173,7 +173,7 @@
 									</li>
 									<li>
 										<figure class="icons">
-											<canvas id="snow" width="60" height="60"></canvas>
+											<canvas id="rain" width="60" height="60"></canvas>
 										</figure>
 										<div class="weather-text">
 											<h4>THU</h4>
@@ -298,7 +298,7 @@
 	<!-- /amcharts -->
 				<script src="{% static "js/amcharts.js" %}"></script>
 		    <script src="{% static "js/serial.js" %}"></script>
-				<script src="{% static "js/export.js" %}"></script>
+				<!--<script src="{% static "js/export.js" %}"></script>-->
 				<script src="{% static "js/light.js" %}"></script>
 				<!-- Chart code -->
 	 <script>
@@ -344,14 +344,14 @@ var chart = AmCharts.makeChart("chartdiv", {
 
     },
     "export": {
-    	"enabled": true
+    	"enabled": false
      }
 
 }, 0);
 </script>
 
 	<!-- //amcharts -->
-		<script src="{% static "js/chart1.js" %}"></script>
+
 		<script src="{% static "js/Chart.min.js" %}"></script>
 		<script src="{% static "js/modernizr.custom.js" %}"></script>
 
@@ -362,35 +362,13 @@ var chart = AmCharts.makeChart("chartdiv", {
 		</script>
 			<!-- script-for-menu -->
 
-<!-- /circle-->
-	 <script type="text/javascript" src= "{% static "js/circles.js" %}"></script>
-					         <script>
-								var colors = [
-										['#ffffff', '#fd9426'], ['#ffffff', '#fc3158'],['#ffffff', '#53d769'], ['#ffffff', '#147efb']
-									];
-								for (var i = 1; i <= 7; i++) {
-									var child = document.getElementById('circles-' + i),
-										percentage = 30 + (i * 10);
 
-									Circles.create({
-										id:         child.id,
-										percentage: percentage,
-										radius:     80,
-										width:      10,
-										number:   	percentage / 1,
-										text:       '%',
-										colors:     colors[i - 1]
-									});
-								}
-
-				</script>
-	<!-- //circle -->
 	<!--skycons-icons-->
 <script src="{% static "js/skycons.js" %}"></script>
 <script>
 									 var icons = new Skycons({"color": "#fcb216"}),
 										  list  = [
-											"partly-cloudy-day"
+											"partly-cloudy-day", "clear-day"
 										  ],
 										  i;
 
@@ -401,7 +379,7 @@ var chart = AmCharts.makeChart("chartdiv", {
 								<script>
 									 var icons = new Skycons({"color": "#fff"}),
 										  list  = [
-											"clear-night","partly-cloudy-night", "cloudy", "clear-day", "sleet", "snow", "wind","fog"
+											"clear-night","partly-cloudy-night", "cloudy", "sleet", "snow", "wind","fog", "rain"
 										  ],
 										  i;
 
