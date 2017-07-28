@@ -70,7 +70,7 @@ class SMSRECIEVER(APIView):
             message = sms.parse(Report)
             for subs in subscriber_list:
                 if subs.name != 'SMS_MODULE':
-                    message = "Hello " + subs.name + ". " + message
-                    devapi_client.send_sms_subscriber(subs.subscriber_number, subs.access_token, message)
+                    msg = "Hello " + subs.name + ". " + message
+                    devapi_client.send_sms_subscriber(subs.subscriber_number, subs.access_token, msg)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
