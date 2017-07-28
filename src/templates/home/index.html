@@ -149,71 +149,9 @@
 						<!-- /chart_agile-->
 												<!-- /weather_w3_agile_info-->
 						<div class="weather_w3_agile_info agile_info_shadow">
-						  <div class="weather_w3_inner_info">
-
-							     <div class="over_lay_agile">
-								  <h3 class="w3_inner_tittle">Weather Report Tanay, Rizal Area</h3>
-						       	  <ul>
-									<li>
-										<figure class="icons">
-											<canvas id="partly-cloudy-day" width="60" height="60"></canvas>
-										</figure>
-										<h3>25 °C</h3>
-										<div class="clearfix"></div>
-									</li>
-									<li>
-										<figure class="icons">
-											<canvas id="clear-day" width="60" height="60"></canvas>
-										</figure>
-										<div class="weather-text">
-											<h4>WED</h4>
-											<h5>27 °C</h5>
-										</div>
-										<div class="clearfix"></div>
-									</li>
-									<li>
-										<figure class="icons">
-											<canvas id="rain" width="60" height="60"></canvas>
-										</figure>
-										<div class="weather-text">
-											<h4>THU</h4>
-											<h5>13 °C</h5>
-										</div>
-										<div class="clearfix"></div>
-									</li>
-									<li>
-										<figure class="icons">
-											<canvas id="partly-cloudy-night" width="60" height="60"></canvas>
-										</figure>
-										<div class="weather-text">
-											<h4>FRI</h4>
-											<h5>18 °C</h5>
-										</div>
-										<div class="clearfix"></div>
-									</li>
-									<li>
-										<figure class="icons">
-											<canvas id="cloudy" width="60" height="60"></canvas>
-										</figure>
-										<div class="weather-text">
-											<h4>SAT</h4>
-											<h5>15 °C</h5>
-										</div>
-										<div class="clearfix"></div>
-									</li>
-									<li>
-										<figure class="icons">
-											<canvas id="fog" width="60" height="60"></canvas>
-										</figure>
-										<div class="weather-text">
-											<h4>SUN</h4>
-											<h5>11 °C</h5>
-										</div>
-										<div class="clearfix"></div>
-									</li>
-								</ul>
-								</div>
-							</div>
+							<center>
+								<div id="openweathermap-widget-11"></div>
+							</center
 						</div>
 						<!-- //weather_w3_agile_info-->
 						<!-- /social_media-->
@@ -364,29 +302,7 @@ var chart = AmCharts.makeChart("chartdiv", {
 
 
 	<!--skycons-icons-->
-<script src="{% static "js/skycons.js" %}"></script>
-<script>
-									 var icons = new Skycons({"color": "#fcb216"}),
-										  list  = [
-											"partly-cloudy-day", "clear-day"
-										  ],
-										  i;
-
-									  for(i = list.length; i--; )
-										icons.set(list[i], list[i]);
-									  icons.play();
-								</script>
-								<script>
-									 var icons = new Skycons({"color": "#fff"}),
-										  list  = [
-											"clear-night","partly-cloudy-night", "cloudy", "sleet", "snow", "wind","fog", "rain"
-										  ],
-										  i;
-
-									  for(i = list.length; i--; )
-										icons.set(list[i], list[i]);
-									  icons.play();
-								</script>
+	<script src='https://openweathermap.org/themes/openweathermap/assets/vendor/owm/js/d3.min.js'></script><script>window.myWidgetParam ? window.myWidgetParam : window.myWidgetParam = [];  window.myWidgetParam.push({id: 11,cityid: '1683319',appid: '9a097bc5403e7ab3dfeaefcf7081130f',units: 'metric',containerid: 'openweathermap-widget-11',  });  (function() {var script = document.createElement('script');script.async = true;script.charset = "utf-8";script.src = "https://openweathermap.org/themes/openweathermap/assets/vendor/owm/js/weather-widget-generator-2.0.js";var s = document.getElementsByTagName('script')[0];s.parentNode.insertBefore(script, s);  })();</script>
 <!--//skycons-icons-->
 <!-- //js -->
 
