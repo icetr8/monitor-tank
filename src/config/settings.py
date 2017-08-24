@@ -28,7 +28,7 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 # env files
-GLOBE_URL = 'http://developer.globelabs.com.ph/'
+GLOBE_URL = 'https://developer.globelabs.com.ph/'
 DEVAPI_URL = 'https://devapi.globelabs.com.ph/'
 APP_ID = 'jB9xhe47b7u7oT5EMzi7oKudpBALhey5'
 REGISTER_URL = 'dialog/oauth?app_id={}'.format(APP_ID)
