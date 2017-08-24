@@ -33,7 +33,8 @@ class Suscriber(APIView):
                 if serializer.is_valid():
                     serializer.save()
                     return HttpResponse("SUCCESFULLY REGISTERED AS SUSBCRIBER")
-            return HttpResponse(serializer.errors)
+                return Response(serializer.errors)
+            return Response({'error':"no access_token or SUSBCRIBER number"})
         return Response({"v1": "Register a user"})
 
     def post(self, request,):
