@@ -30,10 +30,16 @@ class Suscriber(APIView):
             if access_token and subscriber_number:
                 token.pop('status_code')
                 serializer = SuscriberSerializer(data=token)
+                existing = Subscriber.objects.all().filter(subscriber_number=subscriber_number)
+                if existing:
+                    existing[0].access_token = access_token
+                    existing[0].save()
+                    return HttpResponse("UPDATED SUSBCRIBER")
                 if serializer.is_valid():
                     serializer.save()
                     return HttpResponse("SUCCESFULLY REGISTERED AS SUSBCRIBER")
-            return HttpResponse(serializer.errors)
+                return Response(serializer.errors)
+            return Response({'error':"no access_token or SUSBCRIBER number"})
         return Response({"v1": "Register a user"})
 
     def post(self, request,):
