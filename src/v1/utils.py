@@ -2,6 +2,7 @@ from django.conf import settings
 from urlparse import urljoin
 from functools import wraps
 import requests
+import decimal
 
 
 class GlobeClient(object):
@@ -36,8 +37,22 @@ class GlobeClient(object):
         resp_json['status_code'] = resp.status_code
         return resp_json
 
+    def send_sms_gsm_module(self, gsm_number, access_token, message):
+        url = (settings.SMS_MT_URL.format(settings.SHORTCODE, access_token))
+        data = {"outboundSMSMessageRequest": {
+               "senderAddress": settings.SHORTCODE,
+               "outboundSMSTextMessage": {"message": str(message)},
+               "address": int(gsm_number)
+             }
+            }
+        resp = requests.post(settings.DEVAPI_URL+url, json=data)
+        resp_json = resp.json()
+        resp_json['status_code'] = resp.status_code
+        return resp_json
 
 class SMS(object):
+
+    multiplier = 0.05  # 5% of total body mass
 
     def parse(self, Report):
         temperature_level = Report.objects.exclude(temperature_level__isnull=True).exclude(temperature_level__exact=0)
@@ -60,6 +75,23 @@ class SMS(object):
 
         message += " Temperature level is : " + str(temp) + " degrees Celsius."
 
+        if water is None:
+            water = "normal"
         message += " Water Level is " + water
 
         return message
+
+    def send_to_module(self, Report):
+        fish_numbers = Report.objects.exclude(fish_number__isnull=True).exclude(fish_number__exact=0)
+        population = fish_numbers.latest('created_time').fish_number
+        average_weights = Report.objects.exclude(average_fishes_weight__isnull=True).exclude(average_fishes_weight__exact=0)
+        average_weight = average_weights.latest('created_time').average_fishes_weight
+        feeder_grams = Report.objects.exclude(feeder_grams__isnull=True).exclude(feeder_grams__exact=0)
+        gram = feeder_grams.latest('created_time').feeder_grams
+
+        feed = self.multiplier * (average_weight * population)
+        feed_times_result = int(round(feed / gram, 0))
+        report = Report(feed_number=feed_times_result)
+        report.save()
+
+        return feed_times_result

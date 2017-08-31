@@ -67,16 +67,29 @@ class SMSRECIEVER(APIView):
         data['pH_level'] = context_dict.get('ph', 0)
         data['temperature_level'] = context_dict.get('temp', 0)
         data['oxygen_level'] = context_dict.get('oxygen', 0)
-        data['water_level'] = context_dict.get('water', 'normal')
+        data['water_level'] = context_dict.get('water', '')
+        data['fish_number'] = context_dict.get('population', )
+        data['average_fishes_weight'] = context_dict.get('weight', )
+        data['feed_number'] = context_dict.get('feed', )
+        data['feeder_grams'] = context_dict.get('grams',)
 
         serializer = ReportSerializer(data=data)
         if serializer.is_valid():
             serializer.save()
             subscriber_list = Subscriber.objects.all()
-            message = sms.parse(Report)
-            for subs in subscriber_list:
-                if subs.name != 'SMS_MODULE':
-                    msg = "Hello " + subs.name + ". " + message
-                    devapi_client.send_sms_subscriber(subs.subscriber_number, subs.access_token, msg)
+            if data['feed_number']:
+                gsm = Subscriber.objects.filter(name="SMS_MODULE")[0]
+                devapi_client.send_sms_gsm_module(gsm.subscriber_number, gsm.access_token, str(data['feed_number']))
+                return Response(serializer.data, status=status.HTTP_201_CREATED)
+            if data['pH_level']:
+                message = sms.parse(Report)
+                for subs in subscriber_list:
+                    if subs.name != 'SMS_MODULE':
+                        msg = "Hello " + subs.name + ". " + message
+                        devapi_client.send_sms_subscriber(subs.subscriber_number, subs.access_token, msg)
+            else:
+                module_message = sms.send_to_module(Report)
+                gsm = Subscriber.objects.filter(name="SMS_MODULE")[0]
+                devapi_client.send_sms_gsm_module(gsm.subscriber_number, gsm.access_token, str(module_message))
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

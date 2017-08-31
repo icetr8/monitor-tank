@@ -6,7 +6,8 @@ class ReportSerializer(serializers.ModelSerializer):
     class Meta:
         model = Report
         fields = ['context', 'pH_level', 'temperature_level', 'water_level',
-            'oxygen_level']
+            'oxygen_level', 'fish_number', 'average_fishes_weight', 'feed_number',
+            'feeder_grams']
 
 
 class SuscriberSerializer(serializers.ModelSerializer):

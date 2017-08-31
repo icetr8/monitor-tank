@@ -17,3 +17,7 @@ class Report(Base):
     oxygen_level = models.FloatField(max_length=10, default=0)
     temperature_level = models.FloatField(max_length=10, default=0)
     water_level = models.CharField(max_length=20, null=True, blank=True)
+    fish_number = models.IntegerField(null=True, blank=True)
+    average_fishes_weight = models.FloatField(max_length=5, null=True, blank=True)
+    feed_number = models.IntegerField(null=True, blank=True)
+    feeder_grams = models.FloatField(null=True, blank=True)

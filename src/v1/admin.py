@@ -34,15 +34,13 @@ class ReportAdmin(admin.ModelAdmin):
             'temperature_level',
             'water_level',
             'oxygen_level',
-
+            'fish_number',
+            'average_fishes_weight',
+            'feed_number',
+            'feeder_grams'
             )
     list_filter = (
             'created_time',
-            'id',
-            'pH_level',
-            'temperature_level',
-            'water_level',
-            'oxygen_level',
            )
     search_fields = (
             )
