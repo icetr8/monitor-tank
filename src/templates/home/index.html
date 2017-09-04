@@ -12,14 +12,14 @@
 					<nav class="gn-menu-wrapper">
 						<div class="gn-scroller scrollbar1">
 							<ul class="gn-menu agile_menu_drop">
-								<li><a href="main-page.html"> <i class="fa fa-tachometer"></i> Dashboard</a></li>
-
+								<li><a href="#"> <i class="fa fa-tachometer"></i> Dashboard</a></li>
+								<li><a href="#"> <i class="fa fa-tachometer"></i> FAQ </a></li>
 							</ul>
 						</div><!-- /gn-scroller -->
 					</nav>
 				</li>
 				<!-- //nav_agile_w3l -->
-				<li class="second logo"><h1><a href="main-page.html"><i class="fa fa-graduation-cap" aria-hidden="true"></i>Monitoring Tank </a></h1></li>
+				<li class="second logo"><h1><a href="#"><i class="fa fa-graduation-cap" aria-hidden="true"></i>Monitoring Tank </a></h1></li>
 					<li class="second admin-pic">
 				       <ul class="top_dp_agile">
 
@@ -71,8 +71,8 @@
 										<a href="#">
 											<i class="fa fa-tachometer" aria-hidden="true"></i>
 											<div class="ca-content">
-											<h4 class="ca-main two">{{ oxygen_level}}</h4>
-												<h3 class="ca-sub two">Oxygen Level</h3>
+											<h4 class="ca-main two">{{ feed_number }}</h4>
+												<h3 class="ca-sub two">Number of Feed</h3>
 											</div>
 										</a>
 									</li>
@@ -105,21 +105,15 @@
 													<div class="clearfix"></div>
 												</div>
 												<div class="stats-wrap">
-													<div class="count_info"><h4 class="count" style="color:black">50 </h4><span class="year" style="color:black">Total Ayungin in tank</span></div>
-													<div class="year-info"><p class="text-no" style="color:black">50 </p><span class="year" style="color:black">Last production</span></div>
+													<div class="count_info"><h4 class="count" style="color:black">{{ fish_number}} </h4><span class="year" style="color:black">Total Ayungin in tank</span></div>
+													<div class="year-info"><p class="text-no" style="color:black">{{ feeder_grams}} grams</p><span class="year" style="color:black">Feeder grams</span></div>
 													<div class="clearfix"></div>
 												</div>
 												<div class="stats-wrap">
 													<div class="count_info"><h4 class="count" style="color:black">{{ last_update }} </h4><span class="year" style="color:black">Last Update</span></div>
-													<div class="year-info"><p class="text-no" style="color:black">{{ pH_level }}</p><span class="year" style="color:black">PH LEVEL</span></div>
+													<div class="year-info"><p class="text-no" style="color:black">{{ average_fishes_weight }}</p><span class="year" style="color:black">Average fish weight sampling</span></div>
 													<div class="clearfix"></div>
 												</div>
-												<div class="stats-wrap">
-													<div class="count_info"><h4 class="count" style="color:black">{{ water_level }}</h4><span class="year" style="color:black">Water Level</span></div>
-													<div class="year-info"><p class="text-no" style="color:black">{{ temperature_level }} </p><span class="year" style="color:black">TEMPERATURE</span></div>
-													<div class="clearfix"></div>
-												</div>
-
 											</div>
 									   </div>
 									    <div class="col-md-6 agile_top_w3_post_info agile_info_shadow">
@@ -216,6 +210,38 @@
 								</table>
 							</form>
 					</div>
+					<div class="w3l-table-info agile_info_shadow">
+					 <h3 class="w3_inner_tittle two">AUTOMATED FISH FEEDER</h3>
+					 <div class="w3agile-validation">
+					 <div class="agile-validation agile_info_shadow">
+							 <div class="my-div">
+								 <form action="/" class="valida" autocomplete="off" novalidate="novalidate" id="feeder">
+									 {% csrf_token %}
+									 <label >Fish population &nbsp;<span class="at-required-highlight">*</span></label>
+									 <div class="form-group">
+										 <input type="number" name="" id="population" required="true" class="form-control" value="{{ fish_number}}">
+									 </div>
+									 <label >Average weight sampling result (required)&nbsp;<span class="at-required-highlight">*</span></label>
+									 <div class="form-group">
+										 <input type="number" step="0.01" name="" id="weight" required="true" class="form-control" value="{{ average_fishes_weight }}">
+									 </div>
+									 <label>Feeder grams &nbsp;<span class="at-required-highlight">*</span></label>
+									 <div class="form-group">
+										 <input type="number" step="0.01" name="" id="grams" required="true" class="form-control" value="{{ feeder_grams }}">
+									 </div>
+									 <label>Feed number calculated  (change if you want manual feed)&nbsp;<span class="at-required-highlight">*</span></label>
+										<div class="form-group">
+										<input type="number" step="0.01" name="" id="times" class="form-control" placeholder="{{ feed_number }}">
+									 </div>
+									 <p>
+									 <hr>
+										 <input type="submit" name="sub-1"id="submitfeed" value="Submit" class="btn btn-primary">
+									 </p>
+								 </form>
+							 </div>
+						 </div>
+					 </div>
+				  </div>
 						<!-- //social_media-->
 				    </div>
 					<!-- //inner_content_w3_agile_info-->
@@ -228,8 +254,8 @@
 	 <p>© 2017 Esteem. All Rights Reserved | Design by  <a href="http://w3layouts.com/" target="_blank">W3layouts</a> </p>
 </div>
 <!--copy rights end here-->
-{% endblock content %}
 
+{% endblock content %}
 {% block body_scripts %}
 <script type="text/javascript" src="{% static "js/jquery-2.1.4.min.js" %}"></script>
 
@@ -312,9 +338,9 @@ var chart = AmCharts.makeChart("chartdiv", {
 		var clock;
 
 		var update = new Date("{{ last_update }}");
-		console.log(update);
+
 		var now_date = new Date();
-		console.log(now_date)
+
 		var hours = Math.abs(now_date - update) / 36e5;
 		diff = now_date.valueOf() - update.valueOf();
 		var dura = diff/1000;
@@ -356,4 +382,103 @@ var chart = AmCharts.makeChart("chartdiv", {
       });
     });
 </script>
+<!-- input-forms -->
+	<script type="text/javascript" src="{% static 'js/valida.2.1.6.min.js' %}"></script>
+	<script type="text/javascript" >
+
+		$(document).ready(function() {
+
+			// show Valida's version.
+			$('#version').valida( 'version' );
+
+			// Exemple 1
+			$('.valida').valida();
+
+			// Exemple 2
+			/*
+			$('.valida').valida({
+
+				// basic settings
+				validate: 'novalidate',
+				autocomplete: 'off',
+				tag: 'p',
+
+				// default messages
+				messages: {
+					submit: 'Wait ...',
+					required: 'Este campo é obrigatório',
+					invalid: 'Field with invalid data',
+					textarea_help: 'Digitados <span class="at-counter">{0}</span> de {1}'
+				},
+
+				// filters & callbacks
+				use_filter: true,
+
+				// a callback function that will be called right before valida runs.
+				// it must return a boolan value (true for good results and false for errors)
+				before_validate: null,
+
+				// a callback function that will be called right after valida runs.
+				// it must return a boolan value (true for good results and false for errors)
+				after_validate: null
+
+			});
+			*/
+
+			// setup the partial validation
+			$('#partial-1').on('click', function( ev ) {
+				ev.preventDefault();
+				$('#res-1').click(); // clear form error msgs
+				$('form').valida('partial', '#field-1'); // validate only field-1
+				$('form').valida('partial', '#field-1-3'); // validate only field-1-3
+			});
+
+		});
+
+	</script>
+	<!-- //input-forms -->
+	<!--validator js-->
+	<script src="{% static 'js/validator.min.js' %}"></script>
+
+	<script type="text/javascript">
+	var form = document.getElementById("feeder");
+
+	document.getElementById("submitfeed").addEventListener("click", function () {
+		var population = $( "#population" ).val();
+		var weight = $( "#weight" ).val();
+		var grams = $( "#grams" ).val();
+		var times = $( "#times" ).val();
+		var msg="";
+		if (population){
+			msg+=" 'population': ' " + population + "' ,"
+		}
+		if (weight){
+			msg+=" 'weight': ' " + weight + "' ,"
+		}
+		if (grams){
+			msg+=" 'grams': ' " + grams + "' ,"
+		}
+		if (times){
+			msg=" 'feed': ' " + times + "' ,"
+		}
+		alert(msg);
+		$.post("/v1/smsreciever/",
+		{
+			"csrfmiddlewaretoken": "{{ csrf_token }}",
+
+			  'inboundSMSMessageList': {
+			      'inboundSMSMessage': [
+			         {
+								 "message" : msg,
+			         }
+			       ],
+			   }
+
+
+		},
+		function(data, status){
+
+		});
+	});
+	</script>
 {% endblock body_scripts %}
