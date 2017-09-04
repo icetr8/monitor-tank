@@ -55,7 +55,15 @@ class SMSRECIEVER(APIView):
         return Response({"v1": "SMS Reciever"})
 
     def post(self, request,):
-        context = request.data['inboundSMSMessageList']['inboundSMSMessage'][0]['message']
+        web = None
+        try:
+            web = request.data['inboundSMSMessageList[inboundSMSMessage][0][message]']
+        except KeyError:
+            pass
+        if web:
+            context = request.data['inboundSMSMessageList[inboundSMSMessage][0][message]']
+        else:
+            context = request.data['inboundSMSMessageList']['inboundSMSMessage'][0]['message']
         context = '{' + context + '}'
         context_dict = {}
         try:
