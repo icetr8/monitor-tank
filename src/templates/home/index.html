@@ -92,6 +92,27 @@
 									<div class="clearfix"></div>
 								</ul>
 					   </div>
+						 <div>
+							 <div class="col-md-8">
+							 <ul class="col-md-4">
+							 	<button type="button" id="manual_feed"class="grow" style="background:#4d4dff; border-width:10px" value="feed">FEED</button>
+							</ul>
+							 <ul class="col-md-4">
+							 	<button type="button" id="manual_status"class="grow" style="background:#4d4dff">STATUS</button>
+							</ul>
+							 <ul class="col-md-4">
+							 	<button type="button" id="manual_pump"class="grow" style="background:#4d4dff">PUMP</button>
+							</ul>
+						</div>
+							<div class="col-md-4">
+							 <ul class="col-md-6">
+							 	<button type="button" id="manual_1_time" class="grow" style="background:#4d4dff">1 TIME FEEDING</button>
+							 </ul>
+							 <ul class="col-md-6">
+							 	<button type="button" id="manual_2_time" class="grow" style="background:#4d4dff">2 TIME FEEDING</button>
+							 </ul>
+						  </div>
+						 </div>
 					 <!-- //agile_top_w3_grids-->
 
 						<!-- /agile_top_w3_post_sections-->
@@ -480,5 +501,32 @@ var chart = AmCharts.makeChart("chartdiv", {
 
 		});
 	});
+	</script>
+	<script>
+	function send(data){
+		$.post("/v1/smsreciever/",
+			{
+				"csrfmiddlewaretoken": "{{ csrf_token }}",
+				'manual': data,
+			}
+		);
+	}
+  $(document).ready(function(){
+    $('#manual_feed').click(function(){
+       send($('#manual_feed').val())
+    });
+		$('#manual_status').click(function(){
+       $('#manual_status').val()
+    });
+		$('#manual_pump').click(function(){
+       $('#manual_pump').val()
+    });
+		$('#manual_feed_1_time').click(function(){
+       $('#manual_feed_1_time').val()
+    });
+		$('#manual_feed_2_time').click(function(){
+       $('#manual_feed_2_time').val()
+    });
+  });
 	</script>
 {% endblock body_scripts %}

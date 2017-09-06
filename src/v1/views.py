@@ -55,6 +55,12 @@ class SMSRECIEVER(APIView):
         return Response({"v1": "SMS Reciever"})
 
     def post(self, request,):
+        try:
+            data = request.data['manual']
+            if data:
+                return Response({'manual':'sucess'})
+        except KeyError:
+            pass
         web = None
         try:
             web = request.data['inboundSMSMessageList[inboundSMSMessage][0][message]']
