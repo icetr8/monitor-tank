@@ -10,6 +10,9 @@ class Subscriber(Base):
     address = models.CharField(max_length=50, blank=True, default="")
     role = models.CharField(max_length=50, blank=True, default="")
 
+    def __str__(self,):
+        return self.subscriber_number
+
 
 class Report(Base):
     context = models.TextField(max_length=300)
@@ -22,3 +25,12 @@ class Report(Base):
     fish_feed_grams = models.FloatField(null=True, blank=True)
     feed_number = models.IntegerField(null=True, blank=True)
     feeder_grams = models.FloatField(null=True, blank=True)
+
+
+class CommandLog(Base):
+    reporter = models.OneToOneField(
+        Subscriber,
+        on_delete=models.CASCADE,
+        primary_key=True,
+    )
+    command = models.CharField(max_length=10)
