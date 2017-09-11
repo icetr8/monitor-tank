@@ -36,8 +36,9 @@ class ReportAdmin(admin.ModelAdmin):
             'oxygen_level',
             'fish_number',
             'average_fishes_weight',
-            'feed_number',
-            'feeder_grams'
+            'fish_feed_grams',
+            'feeder_grams',
+            'feed_number'
             )
     list_filter = (
             'created_time',

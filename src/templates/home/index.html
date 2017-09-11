@@ -71,8 +71,8 @@
 										<a href="#">
 											<i class="fa fa-tachometer" aria-hidden="true"></i>
 											<div class="ca-content">
-											<h4 class="ca-main two">{{ feed_number }}</h4>
-												<h3 class="ca-sub two">Number of Feed</h3>
+											<h4 class="ca-main two">{{ fish_feed_grams }} grams</h4>
+												<h3 class="ca-sub two">Fish Feeds(computed)</h3>
 											</div>
 										</a>
 									</li>
@@ -131,7 +131,7 @@
 													<div class="clearfix"></div>
 												</div>
 												<div class="stats-wrap">
-													<div class="count_info"><h4 class="count" style="color:black">{{ last_update }} </h4><span class="year" style="color:black">Last Update</span></div>
+													<div class="count_info"><h4 class="count" style="color:black" id="last_update">{{ last_update }} </h4><span class="year" style="color:black">Last Update</span></div>
 													<div class="year-info"><p class="text-no" style="color:black">{{ average_fishes_weight }}</p><span class="year" style="color:black">Average fish weight sampling</span></div>
 													<div class="clearfix"></div>
 												</div>
@@ -250,9 +250,9 @@
 									 <div class="form-group">
 										 <input type="number" step="0.01" name="" id="grams" required="true" class="form-control" value="{{ feeder_grams }}">
 									 </div>
-									 <label>Feed number calculated  (change if you want manual feed)&nbsp;<span class="at-required-highlight">*</span></label>
+									 <label>Feed grams calculated  (change if you want manual feed)&nbsp;<span class="at-required-highlight">*</span></label>
 										<div class="form-group">
-										<input type="number" step="0.01" name="" id="times" class="form-control" placeholder="{{ feed_number }}">
+										<input type="number" step="0.01" name="" id="times" class="form-control" placeholder="{{ fish_feed_grams }}">
 									 </div>
 									 <p>
 									 <hr>
@@ -361,6 +361,8 @@ var chart = AmCharts.makeChart("chartdiv", {
 		var update = new Date("{{ last_update }}");
 
 		var now_date = new Date();
+
+		$("#last_update" ).text( now_date.toLocaleString());
 
 		var hours = Math.abs(now_date - update) / 36e5;
 		diff = now_date.valueOf() - update.valueOf();
