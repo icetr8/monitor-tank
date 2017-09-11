@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Report, Subscriber, CommandLog
+from .models import Report, Subscriber, CommandLog, ManualCommandLog
 # Register your models here.
 
 
@@ -66,4 +66,4 @@ class LogsAdmin(admin.ModelAdmin):
 
 admin.site.register(Subscriber, SubscriberAdmin)
 admin.site.register(Report, ReportAdmin)
-admin.site.register(CommandLog, LogsAdmin)
+admin.site.register(ManualCommandLog, LogsAdmin)

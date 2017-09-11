@@ -29,8 +29,15 @@ class Report(Base):
 
 class CommandLog(Base):
     reporter = models.OneToOneField(
-        Subscriber,
-        on_delete=models.CASCADE,
-        primary_key=True,
-    )
+                    Subscriber,
+                            on_delete=models.CASCADE,
+                                    primary_key=True,
+                        )
+    command = models.CharField(max_length=10)
+
+
+class ManualCommandLog(Base):
+    reporter = models.ForeignKey(
+            Subscriber,
+            on_delete=models.CASCADE)
     command = models.CharField(max_length=10)

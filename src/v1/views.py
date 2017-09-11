@@ -4,7 +4,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from .serializer import ReportSerializer, SuscriberSerializer
-from .models import Report, Subscriber, CommandLog
+from .models import Report, Subscriber, CommandLog, ManualCommandLog
 from .utils import GlobeClient, SMS
 from django.conf import settings
 import ast
@@ -98,7 +98,7 @@ class SMSRECIEVER(APIView):
                 number = num.replace("tel:+63", "")
 
                 subs = Subscriber.objects.filter(subscriber_number=number)[0]
-                cmd = CommandLog(reporter=subs, command=msg)
+                cmd = ManualCommandLog(reporter=subs, command=msg)
                 cmd.save()
                 return Response({'data': msg})
         data = {}
