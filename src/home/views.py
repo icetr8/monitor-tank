@@ -25,12 +25,10 @@ class Index(View):
         context['water_level'] = water_level.latest('created_time').water_level
         oxygen_level = Report.objects.exclude(oxygen_level__isnull=True).exclude(oxygen_level__exact=0)
         context['oxygen_level'] = oxygen_level.latest('created_time').oxygen_level
-        feed_number = Report.objects.exclude(feed_number__isnull=True).exclude(feed_number__exact=0)
-        context['feed_number'] = feed_number.latest('created_time').feed_number
+        feed_number = Report.objects.exclude(fish_feed_grams__isnull=True).exclude(fish_feed_grams__exact=0)
+        context['fish_feed_grams'] = feed_number.latest('created_time').fish_feed_grams
         feeder_grams = Report.objects.exclude(feeder_grams__isnull=True).exclude(feeder_grams__exact=0)
         context['feeder_grams'] = feeder_grams.latest('created_time').feeder_grams
-        feed_number = Report.objects.exclude(feed_number__isnull=True).exclude(feed_number__exact=0)
-        context['feed_number'] = feed_number.latest('created_time').feed_number
         average_fishes_weight = Report.objects.exclude(average_fishes_weight__isnull=True).exclude(average_fishes_weight__exact=0)
         context['average_fishes_weight'] = average_fishes_weight.latest('created_time').average_fishes_weight
         fish_numbers = Report.objects.exclude(fish_number__isnull=True).exclude(fish_number__exact=0)

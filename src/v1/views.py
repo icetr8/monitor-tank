@@ -55,6 +55,11 @@ class SMSRECIEVER(APIView):
         return Response({"v1": "SMS Reciever"})
 
     def post(self, request,):
+        try:
+            data = request.data['manual']
+            return response({'manual'})
+        except KeyError:
+            pass
         web = None
         try:
             web = request.data['inboundSMSMessageList[inboundSMSMessage][0][message]']
@@ -78,16 +83,24 @@ class SMSRECIEVER(APIView):
         data['water_level'] = context_dict.get('water', '')
         data['fish_number'] = context_dict.get('population', )
         data['average_fishes_weight'] = context_dict.get('weight', )
-        data['feed_number'] = context_dict.get('feed', )
+        data['fish_feed_grams'] = context_dict.get('feed', )
+        data['feed_number'] = context_dict.get('number', )
         data['feeder_grams'] = context_dict.get('grams',)
-
+        print data['feed_number']
         serializer = ReportSerializer(data=data)
         if serializer.is_valid():
             serializer.save()
             subscriber_list = Subscriber.objects.all()
-            if data['feed_number']:
+            if data['fish_feed_grams']:
+                print "dasdas"
+                fish_feed_grams = data['fish_feed_grams']
                 gsm = Subscriber.objects.filter(name="SMS_MODULE")[0]
-                devapi_client.send_sms_gsm_module(gsm.subscriber_number, gsm.access_token, str(data['feed_number']))
+                feeder_grams = Report.objects.exclude(feeder_grams__isnull=True).exclude(feeder_grams__exact=0)
+                gram = feeder_grams.latest('created_time').feeder_grams
+                feed_times_result = int(round(float(fish_feed_grams) / gram, 0))
+                report = Report(fish_feed_grams=float(fish_feed_grams), feed_number=feed_times_result)
+                report.save()
+                devapi_client.send_sms_gsm_module(gsm.subscriber_number, gsm.access_token, str(feed_times_result))
                 return Response(serializer.data, status=status.HTTP_201_CREATED)
             if data['pH_level']:
                 message = sms.parse(Report)

@@ -91,7 +91,7 @@ class SMS(object):
 
         feed = self.multiplier * (average_weight * population)
         feed_times_result = int(round(feed / gram, 0))
-        report = Report(feed_number=feed_times_result)
+        report = Report(feed_number=feed_times_result, fish_feed_grams=feed)
         report.save()
 
         return feed_times_result
