@@ -4,7 +4,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from .serializer import ReportSerializer, SuscriberSerializer
-from .models import Report, Subscriber
+from .models import Report, Subscriber, CommandLog
 from .utils import GlobeClient, SMS
 from django.conf import settings
 import ast
@@ -57,7 +57,9 @@ class SMSRECIEVER(APIView):
     def post(self, request,):
         try:
             data = request.data['manual']
-            return response({'manual'})
+            gsm = Subscriber.objects.filter(name="SMS_MODULE")[0]
+            devapi_client.send_sms_gsm_module(gsm.subscriber_number, gsm.access_token, str(data))
+            return Response({'manual': data})
         except KeyError:
             pass
         web = None
@@ -75,6 +77,30 @@ class SMSRECIEVER(APIView):
             context_dict = ast.literal_eval(context)
         except SyntaxError:
             return Response({'error': 'SyntaxError'}, status=status.HTTP_400_BAD_REQUEST)
+        except ValueError:
+            data = str(context)
+            msg = ""
+            if 'feed' in data:
+                msg = 'feed'
+            elif 'status' in data:
+                msg = 'status'
+            elif 'pump' in data:
+                msg = 'pump'
+            elif 'once' in data:
+                msg = 'once'
+            elif 'twice' in data:
+                msg = 'twice'
+            if msg:
+                gsm = Subscriber.objects.filter(name="SMS_MODULE")[0]
+                devapi_client.send_sms_gsm_module(gsm.subscriber_number, gsm.access_token, msg)
+
+                num = request.data['inboundSMSMessageList']['inboundSMSMessage'][0]['senderAddress']
+                number = num.replace("tel:+63", "")
+
+                subs = Subscriber.objects.filter(subscriber_number=number)[0]
+                cmd = CommandLog(reporter=subs, command=msg)
+                cmd.save()
+                return Response({'data': msg})
         data = {}
         data['context'] = context
         data['pH_level'] = context_dict.get('ph', 0)
@@ -86,13 +112,12 @@ class SMSRECIEVER(APIView):
         data['fish_feed_grams'] = context_dict.get('feed', )
         data['feed_number'] = context_dict.get('number', )
         data['feeder_grams'] = context_dict.get('grams',)
-        print data['feed_number']
+
         serializer = ReportSerializer(data=data)
         if serializer.is_valid():
             serializer.save()
             subscriber_list = Subscriber.objects.all()
             if data['fish_feed_grams']:
-                print "dasdas"
                 fish_feed_grams = data['fish_feed_grams']
                 gsm = Subscriber.objects.filter(name="SMS_MODULE")[0]
                 feeder_grams = Report.objects.exclude(feeder_grams__isnull=True).exclude(feeder_grams__exact=0)

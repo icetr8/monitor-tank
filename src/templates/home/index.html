@@ -77,7 +77,7 @@
 										</a>
 									</li>
 								</div>
-								<div class="col-md-3">
+								<div class="col-md-3"  id="manual">
 
 									<li>
 										<a href="#">
@@ -98,18 +98,18 @@
 							 	<button type="button" id="manual_feed"class="grow" style="background:#4d4dff; border-width:10px" value="feed">FEED</button>
 							</ul>
 							 <ul class="col-md-4">
-							 	<button type="button" id="manual_status"class="grow" style="background:#4d4dff">STATUS</button>
+							 	<button type="button" id="manual_status"class="grow" style="background:#4d4dff" value="status">STATUS</button>
 							</ul>
 							 <ul class="col-md-4">
-							 	<button type="button" id="manual_pump"class="grow" style="background:#4d4dff">PUMP</button>
+							 	<button type="button" id="manual_pump"class="grow" style="background:#4d4dff" value="pump">PUMP</button>
 							</ul>
 						</div>
 							<div class="col-md-4">
 							 <ul class="col-md-6">
-							 	<button type="button" id="manual_1_time" class="grow" style="background:#4d4dff">1 TIME FEEDING</button>
+							 	<button type="button" id="manual_1_time" class="grow" style="background:#4d4dff" value="once">ONCE FEEDING</button>
 							 </ul>
 							 <ul class="col-md-6">
-							 	<button type="button" id="manual_2_time" class="grow" style="background:#4d4dff">2 TIME FEEDING</button>
+							 	<button type="button" id="manual_2_time" class="grow" style="background:#4d4dff" value="twice">TWICE FEEDING</button>
 							 </ul>
 						  </div>
 						 </div>
@@ -236,7 +236,7 @@
 					 <div class="w3agile-validation">
 					 <div class="agile-validation agile_info_shadow">
 							 <div class="my-div">
-								 <form action="/" class="valida" autocomplete="off" novalidate="novalidate" id="feeder">
+
 									 {% csrf_token %}
 									 <label >Fish population &nbsp;<span class="at-required-highlight">*</span></label>
 									 <div class="form-group">
@@ -258,7 +258,7 @@
 									 <hr>
 										 <input type="submit" name="sub-1"id="submitfeed" value="Submit" class="btn btn-primary">
 									 </p>
-								 </form>
+
 							 </div>
 						 </div>
 					 </div>
@@ -502,32 +502,36 @@ var chart = AmCharts.makeChart("chartdiv", {
 		function(data, status){
 
 		});
+		window.location = "/#manual";
+		location.reload();
 	});
 	</script>
 	<script>
 	function send(data){
+		alert("Are you sure you want to continue?")
 		$.post("/v1/smsreciever/",
 			{
 				"csrfmiddlewaretoken": "{{ csrf_token }}",
 				'manual': data,
 			}
 		);
+		window.location = "/#manual";
 	}
   $(document).ready(function(){
     $('#manual_feed').click(function(){
-       send($('#manual_feed').val())
+       send($('#manual_feed').val());
     });
 		$('#manual_status').click(function(){
-       $('#manual_status').val()
+       send($('#manual_status').val());
     });
 		$('#manual_pump').click(function(){
-       $('#manual_pump').val()
+       send($('#manual_pump').val());
     });
-		$('#manual_feed_1_time').click(function(){
-       $('#manual_feed_1_time').val()
+		$('#manual_1_time').click(function(){
+       send($('#manual_1_time').val());
     });
-		$('#manual_feed_2_time').click(function(){
-       $('#manual_feed_2_time').val()
+		$('#manual_2_time').click(function(){
+       send($('#manual_2_time').val());
     });
   });
 	</script>

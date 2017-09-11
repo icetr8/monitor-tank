@@ -14,8 +14,9 @@ class Index(View):
         reports = reversed(Report.objects.all().order_by('-id')[:5])
         last_update = Report.objects.latest('id')
         context['subscriber'] = subs
-        context['reports'] = reports
-        context['last_update'] = str(last_update.created_time)
+        r = Report.objects.exclude(pH_level__isnull=True).exclude(pH_level__exact=0)[:5]
+        context['reports'] = r
+        context['last_update'] = str(r[0].created_time)
 
         temperature_level = Report.objects.exclude(temperature_level__isnull=True).exclude(temperature_level__exact=0)
         context['temperature_level'] = temperature_level.latest('created_time').temperature_level
