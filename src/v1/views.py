@@ -59,6 +59,8 @@ class SMSRECIEVER(APIView):
             data = request.data['manual']
             gsm = Subscriber.objects.filter(name="SMS_MODULE")[0]
             devapi_client.send_sms_gsm_module(gsm.subscriber_number, gsm.access_token, str(data))
+            cmd = ManualCommandLog(reporter=gsm, command=data, web=True)
+            cmd.save()
             return Response({'manual': data})
         except KeyError:
             pass
@@ -68,39 +70,55 @@ class SMSRECIEVER(APIView):
         except KeyError:
             pass
         if web:
-            context = request.data['inboundSMSMessageList[inboundSMSMessage][0][message]']
+            context_msg = request.data['inboundSMSMessageList[inboundSMSMessage][0][message]']
         else:
-            context = request.data['inboundSMSMessageList']['inboundSMSMessage'][0]['message']
-        context = '{' + context + '}'
+            context_msg = request.data['inboundSMSMessageList']['inboundSMSMessage'][0]['message']
+        context = '{' + context_msg + '}'
         context_dict = {}
         try:
             context_dict = ast.literal_eval(context)
         except SyntaxError:
             return Response({'error': 'SyntaxError'}, status=status.HTTP_400_BAD_REQUEST)
         except ValueError:
-            data = str(context)
+            data = str(context_msg)
             msg = ""
-            if 'feed' in data:
+            msg_subs = 'You have texted '
+            if 'feed' == context_msg.lower():
                 msg = 'feed'
-            elif 'status' in data:
+                msg_subs += msg
+            elif 'status' == context_msg.lower():
                 msg = 'status'
-            elif 'pump' in data:
+                msg_subs += msg
+            elif 'pump' == context_msg.lower():
                 msg = 'pump'
-            elif 'once' in data:
+                msg_subs += msg
+            elif 'once' == context_msg.lower():
                 msg = 'once'
-            elif 'twice' in data:
+                msg_subs += msg
+            elif 'twice' == context_msg.lower():
                 msg = 'twice'
+                msg_subs += msg
+            elif 'help' == context_msg.lower():
+                msg_subs = 'feed = pour feeds to fishes \npump = pump water \n' \
+                'status = update subscribers pH, temp and water level \n' \
+                'once = once feeding per day \ntwice = twice feeding per day'
+            else:
+                msg_subs = 'you have texted an invalid command. Might be mispelled \n \n'\
+                    'feed = pour feeds to fishes \npump = pump water \n' \
+                    'status = update subscribers pH, temp and water level \n' \
+                    'once = once feeding per day \ntwice = twice feeding per day'
             if msg:
                 gsm = Subscriber.objects.filter(name="SMS_MODULE")[0]
                 devapi_client.send_sms_gsm_module(gsm.subscriber_number, gsm.access_token, msg)
 
-                num = request.data['inboundSMSMessageList']['inboundSMSMessage'][0]['senderAddress']
-                number = num.replace("tel:+63", "")
+            num = request.data['inboundSMSMessageList']['inboundSMSMessage'][0]['senderAddress']
+            number = num.replace("tel:+63", "")
 
-                subs = Subscriber.objects.filter(subscriber_number=number)[0]
-                cmd = ManualCommandLog(reporter=subs, command=msg)
-                cmd.save()
-                return Response({'data': msg})
+            subs = Subscriber.objects.filter(subscriber_number=number)[0]
+            devapi_client.send_sms_gsm_module(subs.subscriber_number, subs.access_token, str(msg_subs))
+            cmd = ManualCommandLog(reporter=subs, command=msg)
+            cmd.save()
+            return Response({'data': msg})
         data = {}
         data['context'] = context
         data['pH_level'] = context_dict.get('ph', 0)

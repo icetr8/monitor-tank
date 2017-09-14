@@ -14,9 +14,10 @@ class Index(View):
         reports = reversed(Report.objects.all().order_by('-id')[:5])
         last_update = Report.objects.latest('id')
         context['subscriber'] = subs
-        r = Report.objects.exclude(pH_level__isnull=True).exclude(pH_level__exact=0)[:5]
+        r = list(Report.objects.exclude(pH_level__isnull=True).exclude(pH_level__exact=0))[-5:]
+
         context['reports'] = r
-        context['last_update'] = str(r[0].created_time)
+        context['last_update'] = str(last_update.created_time)
 
         temperature_level = Report.objects.exclude(temperature_level__isnull=True).exclude(temperature_level__exact=0)
         context['temperature_level'] = temperature_level.latest('created_time').temperature_level
@@ -41,18 +42,16 @@ class Index(View):
         return render(request, self.template_name, context)
 
     def post(self, request, *args, **kwargs):
-        sub_id = request.POST.get('id')
-        print sub_id
-        sub = Subscriber.objects.get(id=sub_id)
-        name = request.POST.get('name', '')
-        address = request.POST.get('address', '')
-        role = request.POST.get('role', '')
-        print role
-        if name:
-            sub.name = name
-        if address:
-            sub.address = address
-        if role:
-            sub.role = role
-        sub.save()
-        return redirect('/')
+        for subs in Subscriber.objects.all():
+            subs.subscriber_number
+            pk = request.POST.get(subs.subscriber_number)
+            name = request.POST.get(pk+'name')
+            address = request.POST.get(pk+'address')
+            role = request.POST.get(pk+'role')
+
+            subs.name = name
+            subs.address = address
+            subs.role = role
+            subs.save()
+
+        return redirect('/#subscribers')

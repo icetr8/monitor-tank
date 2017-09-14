@@ -121,15 +121,12 @@
 										   <div class="img_wthee_post">
 										         <h3 class="w3_inner_tittle" style="color:black">Latest Report</h3>
 												<div class="stats-wrap">
-													<div class="count_info"><h4 class="count">65,800,587 </h4><span class="year" style="color:black">Total Ayungin</span></div>
-
-													<div class="clearfix"></div>
-												</div>
-												<div class="stats-wrap">
 													<div class="count_info"><h4 class="count" style="color:black">{{ fish_number}} </h4><span class="year" style="color:black">Total Ayungin in tank</span></div>
 													<div class="year-info"><p class="text-no" style="color:black">{{ feeder_grams}} grams</p><span class="year" style="color:black">Feeder grams</span></div>
 													<div class="clearfix"></div>
 												</div>
+												<br>
+												<br>
 												<div class="stats-wrap">
 													<div class="count_info"><h4 class="count" style="color:black" id="last_update">{{ last_update }} </h4><span class="year" style="color:black">Last Update</span></div>
 													<div class="year-info"><p class="text-no" style="color:black">{{ average_fishes_weight }}</p><span class="year" style="color:black">Average fish weight sampling</span></div>
@@ -185,8 +182,8 @@
 									</div>
 
 							</div>
-							<div class="w3l-table-info agile_info_shadow">
-							 <h3 class="w3_inner_tittle two">SMS Monitoring Suscribers</h3>
+							<div class="w3l-table-info agile_info_shadow" id="subscribers">
+							 <h3 class="w3_inner_tittle two" >SMS Monitoring Suscribers</h3>
 							 <form method="post">
 								 {% csrf_token %}
 								<table id="table">
@@ -203,23 +200,23 @@
 									<tr>
 										<td>
 									 	{{ sub.subscriber_number}}
-										<input type="hidden" name="id" value="{{ sub.id}}">
+										<input type="hidden" name="{{sub.subscriber_number}}" value="{{ sub.id}}">
 										</td>
 										{% if sub.name %}
-										<td><input type="text" name="name" class="form-control" value="{{sub.name}}"></td>
+										<td><input type="text" name="{{sub.id}}name" class="form-control" value="{{sub.name}}"></td>
 										{% else %}
 
-										<td><input type="text" name="name" class="form-control" placeholder="Fill name"></td>
+										<td><input type="text" name="{{sub.id}}name" class="form-control" placeholder="Fill name"></td>
 										{% endif %}
 										{% if sub.address %}
-										<td><input type="text" name="address" class="form-control" value="{{ sub.address }}"></td>
+										<td><input type="text" name="{{sub.id}}address" class="form-control" value="{{ sub.address }}"></td>
 										{% else %}
-										<td><input type="text" name="address" class="form-control" placeholder="Fill address"></td>
+										<td><input type="text" name="{{sub.id}}address" class="form-control" placeholder="Fill address"></td>
 										{% endif %}
 										{% if sub.role%}
-										<td><input type="text" name="role" class="form-control" value="{{ sub.role }}"></td>
+										<td><input type="text" name="{{sub.id}}role" class="form-control" value="{{ sub.role }}"></td>
 										{% else %}
-										<td><input type="text" name="role" class="form-control" placeholder="Fill role"></td>
+										<td><input type="text" name="{{sub.id}}role" class="form-control" placeholder="Fill role"></td>
 										{% endif %}
 									</tr>
 										 {% endfor %}
@@ -502,20 +499,24 @@ var chart = AmCharts.makeChart("chartdiv", {
 		function(data, status){
 
 		});
-		window.location = "/#manual";
-		location.reload();
+		setTimeout(function(){window.location.href = "/"; }, 1000);
+
 	});
 	</script>
 	<script>
 	function send(data){
-		alert("Are you sure you want to continue?")
+		alert("Are you sure you want to continue?");
+		if (data=='status'){
+			alert("You've chose status please wait for 15 seconds then refresh the page");
+		}
 		$.post("/v1/smsreciever/",
 			{
 				"csrfmiddlewaretoken": "{{ csrf_token }}",
 				'manual': data,
 			}
 		);
-		window.location = "/#manual";
+		setTimeout(function(){window.location = "/#manual";}, 1000);
+
 	}
   $(document).ready(function(){
     $('#manual_feed').click(function(){
