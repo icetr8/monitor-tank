@@ -41,3 +41,4 @@ class ManualCommandLog(Base):
             Subscriber,
             on_delete=models.CASCADE)
     command = models.CharField(max_length=10)
+    web = models.BooleanField(default=False)

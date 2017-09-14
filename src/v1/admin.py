@@ -5,8 +5,8 @@ from .models import Report, Subscriber, CommandLog, ManualCommandLog
 
 class SubscriberAdmin(admin.ModelAdmin):
     list_display = (
-            'id',
             'subscriber_number',
+            'id',
             'name',
             'address',
             'role',
@@ -53,10 +53,12 @@ class ReportAdmin(admin.ModelAdmin):
 class LogsAdmin(admin.ModelAdmin):
     list_display = (
             'reporter',
-            'command'
+            'command',
+            'web'
             )
     list_filter = (
             'reporter',
+            'web'
            )
     search_fields = (
             )
