@@ -47,6 +47,7 @@ class GlobeClient(object):
             }
         resp = requests.post(settings.DEVAPI_URL+url, json=data)
         resp_json = resp.json()
+        print resp_json
         resp_json['status_code'] = resp.status_code
         return resp_json
 
@@ -91,7 +92,10 @@ class SMS(object):
 
         feed = self.multiplier * (average_weight * population)
         feed_times_result = int(round(feed / gram, 0))
-        report = Report(feed_number=feed_times_result, fish_feed_grams=feed)
+        report = Report.objects.latest('id')
+        report.feed_number = feed_times_result
+        report.fish_feed_grams = feed
+
         report.save()
 
         return feed_times_result
