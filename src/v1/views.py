@@ -109,6 +109,8 @@ class SMSRECIEVER(APIView):
                 import time
                 time.sleep(10)
                 devapi_client.send_sms_gsm_module(gsm.subscriber_number, gsm.access_token, str(feed))
+                cmd = ManualCommandLog(reporter=gsm, command='ask')
+                cmd.save()
                 return Response({'ask': 'true'})
             else:
                 msg_subs = 'You have texted an invalid command. Might be mispelled \n \n'\
