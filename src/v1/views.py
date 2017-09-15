@@ -98,12 +98,18 @@ class SMSRECIEVER(APIView):
             elif 'twice' == context_msg.lower():
                 msg = 'twice'
                 msg_subs += msg
-            elif 'help' == context_msg.lower():
+            elif 'support' == context_msg.lower():
                 msg_subs = 'feed = pour feeds to fishes \npump = pump water \n' \
                 'status = update subscribers pH, temp and water level \n' \
                 'once = once feeding per day \ntwice = twice feeding per day'
+            elif 'ask' == context_msg.lower():
+                gsm = Subscriber.objects.filter(name="SMS_MODULE")[0]
+                feed_num = Report.objects.exclude(feed_number__isnull=True)
+                feed = feed_num.latest('created_time').feed_number
+                devapi_client.send_sms_gsm_module(gsm.subscriber_number, gsm.access_token, str(feed))
+                return Response({'ask': 'true'})
             else:
-                msg_subs = 'you have texted an invalid command. Might be mispelled \n \n'\
+                msg_subs = 'You have texted an invalid command. Might be mispelled \n \n'\
                     'feed = pour feeds to fishes \npump = pump water \n' \
                     'status = update subscribers pH, temp and water level \n' \
                     'once = once feeding per day \ntwice = twice feeding per day'
@@ -115,7 +121,8 @@ class SMSRECIEVER(APIView):
             number = num.replace("tel:+63", "")
 
             subs = Subscriber.objects.filter(subscriber_number=number)[0]
-            devapi_client.send_sms_gsm_module(subs.subscriber_number, subs.access_token, str(msg_subs))
+            if subs.name != 'SMS_MODULE':
+                devapi_client.send_sms_gsm_module(subs.subscriber_number, subs.access_token, str(msg_subs))
             cmd = ManualCommandLog(reporter=subs, command=msg)
             cmd.save()
             return Response({'data': msg})
