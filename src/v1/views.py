@@ -142,10 +142,6 @@ class SMSRECIEVER(APIView):
         data['fish_feed_grams'] = context_dict.get('feed', )
         data['feed_number'] = context_dict.get('number', )
         data['feeder_grams'] = context_dict.get('grams',)
-        if data['pH_level']:
-            ph = random.uniform(7.5, 7.55)
-            ph_str = round(ph, 2)
-            data['pH_level'] = str(ph_str)
 
         serializer = ReportSerializer(data=data)
         if serializer.is_valid():
