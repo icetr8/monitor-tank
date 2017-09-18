@@ -3,6 +3,7 @@ from urlparse import urljoin
 from functools import wraps
 import requests
 import decimal
+import random
 
 
 class GlobeClient(object):
@@ -66,6 +67,7 @@ class SMS(object):
         oxygen = oxygen_level.latest('created_time').oxygen_level
 
         message = "pH level is : " + str(ph)
+        
 
         if ph > 5.5 and ph < 8.5:
             message += " , fairly normal."

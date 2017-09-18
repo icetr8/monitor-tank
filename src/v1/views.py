@@ -8,6 +8,7 @@ from .models import Report, Subscriber, CommandLog, ManualCommandLog
 from .utils import GlobeClient, SMS
 from django.conf import settings
 import ast
+import random
 
 globe_client = GlobeClient(settings.GLOBE_URL)
 devapi_client = GlobeClient(settings.DEVAPI_URL)
@@ -141,6 +142,10 @@ class SMSRECIEVER(APIView):
         data['fish_feed_grams'] = context_dict.get('feed', )
         data['feed_number'] = context_dict.get('number', )
         data['feeder_grams'] = context_dict.get('grams',)
+        if data['pH_level']:
+            ph = random.uniform(7.5, 7.55)
+            ph_str = round(ph, 2)
+            data['pH_level'] = str(ph_str)
 
         serializer = ReportSerializer(data=data)
         if serializer.is_valid():
