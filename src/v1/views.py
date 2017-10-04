@@ -107,8 +107,6 @@ class SMSRECIEVER(APIView):
                 gsm = Subscriber.objects.filter(name="SMS_MODULE")[0]
                 feed_num = Report.objects.exclude(feed_number__isnull=True)
                 feed = feed_num.latest('created_time').feed_number
-                import time
-                time.sleep(30)
                 devapi_client.send_sms_gsm_module(gsm.subscriber_number, gsm.access_token, str(feed))
                 cmd = ManualCommandLog(reporter=gsm, command='ask')
                 cmd.save()
