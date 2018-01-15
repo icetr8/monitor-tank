@@ -30,14 +30,14 @@ ALLOWED_HOSTS = []
 # env files
 GLOBE_URL = 'https://developer.globelabs.com.ph/'
 DEVAPI_URL = 'https://devapi.globelabs.com.ph/'
-APP_ID = 'EXAMtzooEjfebT9kngiodgfKMXgatjGK'
+APP_ID = 'B75MHyK5zLh5rTGG4ri5g6hq67BRHpkG'
 REGISTER_URL = 'dialog/oauth?app_id={}'.format(APP_ID)
 TOKEN_URL = "oauth/access_token?app_id=%s&app_secret=%s&code=%s"
-SMS_REGISTER_NUM = '21586989'
-APP_SECRET = '7764a367619d5c4312327e50775969aafac2bc734c12f2d02bd643022717de9c'
-SMS_REGISTER_NUM_CROSSTELCO = '29290586989'
+SMS_REGISTER_NUM = '21586723'
+APP_SECRET = 'bd8ba301365e23bfb064b07860470e2db7903982bac0056184a5318d9515ba61'
+SMS_REGISTER_NUM_CROSSTELCO = '29290586723'
 SMS_MT_URL = "smsmessaging/v1/outbound/{0}/requests?access_token={1}"  # senderAddress, access_token
-SHORTCODE = '6989'
+SHORTCODE = '6723'
 
 # Application definition
 
