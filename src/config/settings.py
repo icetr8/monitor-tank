@@ -31,7 +31,7 @@ ALLOWED_HOSTS = []
 GLOBE_URL = 'https://developer.globelabs.com.ph/'
 DEVAPI_URL = 'https://devapi.globelabs.com.ph/'
 APP_ID = 'B75MHyK5zLh5rTGG4ri5g6hq67BRHpkG'
-REGISTER_URL = 'dialog/oauth?app_id={}'.format(APP_ID)
+REGISTER_URL = 'dialog/oauth/{}'.format(APP_ID)
 TOKEN_URL = "oauth/access_token?app_id=%s&app_secret=%s&code=%s"
 SMS_REGISTER_NUM = '21586723'
 APP_SECRET = 'bd8ba301365e23bfb064b07860470e2db7903982bac0056184a5318d9515ba61'
