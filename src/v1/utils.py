@@ -78,10 +78,6 @@ class SMS(object):
 
         message += " Temperature level is : " + str(temp) + " degrees Celsius."
 
-        if water is None:
-            water = "normal"
-        message += " Water Level is " + water
-
         return message
 
     def send_to_module(self, Report):
