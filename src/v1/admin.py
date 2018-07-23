@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Report, Subscriber, CommandLog, ManualCommandLog
+from .models import Report, Subscriber, CommandLog, ManualCommandLog, Testing
 # Register your models here.
 
 
@@ -65,7 +65,19 @@ class LogsAdmin(admin.ModelAdmin):
     readonly_fields = (
             )
 
+class TestingAdmin(admin.ModelAdmin):
+    list_display = (
+            'address',
+            'amount',
+            'currency'
+            )
+    list_filter = (
+            'address',
+            'amount',
+            'currency'
+           )
 
 admin.site.register(Subscriber, SubscriberAdmin)
 admin.site.register(Report, ReportAdmin)
 admin.site.register(ManualCommandLog, LogsAdmin)
+admin.site.register(Testing, TestingAdmin)
