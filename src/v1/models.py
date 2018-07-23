@@ -42,3 +42,8 @@ class ManualCommandLog(Base):
             on_delete=models.CASCADE)
     command = models.CharField(max_length=10)
     web = models.BooleanField(default=False)
+
+class Testing(Base):
+    address = models.CharField(max_length=40)
+    amount = models.CharField(max_length=40)
+    currency = models.CharField(max_length=40)

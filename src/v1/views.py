@@ -4,7 +4,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from .serializer import ReportSerializer, SuscriberSerializer
-from .models import Report, Subscriber, CommandLog, ManualCommandLog
+from .models import Report, Subscriber, CommandLog, ManualCommandLog, Testing
 from .utils import GlobeClient, SMS
 from django.conf import settings
 import ast
@@ -19,6 +19,14 @@ class Index(APIView):
 
     def get(self, request,):
         return Response({"GlobeLabs API Connection version": "v1"})
+    
+    def post(self, request,):
+        address = request.data['address']
+        amount = request.data['amount']
+        currency = request.data['currency']
+        test = Testing(address=address, amount=amount, currency=currency)
+        test.save()
+        return Response({'ok': 'ok'})
 
 
 class Suscriber(APIView):

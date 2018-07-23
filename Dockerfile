@@ -4,7 +4,7 @@ MAINTAINER Angelo Suinan <suinanangelo@gmail.com>
 
 RUN apt-get update
 RUN apt-get install -y build-essential
-RUN apt-get install -y python-dev libmysqlclient-dev
+RUN apt-get install -y python-dev
 RUN apt-get install -y libjpeg-dev libz-dev
 RUN apt-get -y autoremove
 
