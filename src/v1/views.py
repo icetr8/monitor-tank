@@ -23,8 +23,9 @@ class Index(APIView):
     def post(self, request,):
         address = request.data['address']
         amount = request.data['amount']
-        currency = request.data['currency']
-        test = Testing(address=address, amount=amount, currency=currency)
+        currency = request.data.get('currency', '')
+        contract_address = request.data.get('contractAddress', '')
+        test = Testing(address=address, amount=amount, currency=currency, contract_address=contract_address)
         test.save()
         return Response({'ok': 'ok'})
 

@@ -69,12 +69,14 @@ class TestingAdmin(admin.ModelAdmin):
     list_display = (
             'address',
             'amount',
-            'currency'
+            'currency',
+            'contract_address'
             )
     list_filter = (
             'address',
             'amount',
-            'currency'
+            'currency',
+            'contract_address'
            )
 
 admin.site.register(Subscriber, SubscriberAdmin)
