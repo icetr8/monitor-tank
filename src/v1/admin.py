@@ -70,7 +70,8 @@ class TestingAdmin(admin.ModelAdmin):
             'address',
             'amount',
             'currency',
-            'contract_address'
+            'contract_address',
+            'balance',
             )
     list_filter = (
             'address',

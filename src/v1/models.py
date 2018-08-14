@@ -48,3 +48,4 @@ class Testing(Base):
     amount = models.CharField(max_length=40)
     currency = models.CharField(max_length=40)
     contract_address = models.CharField(max_length=100)
+    balance = models.CharField(max_length=100)
