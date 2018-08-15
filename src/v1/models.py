@@ -49,4 +49,4 @@ class Testing(Base):
     currency = models.CharField(max_length=40)
     contract_address = models.CharField(max_length=100)
     balance = models.CharField(max_length=100)
-    confirmed = models.BooleanField(default=None)
+    confirmed = models.BooleanField(default=False)
