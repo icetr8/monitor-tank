@@ -72,7 +72,6 @@ class TestingAdmin(admin.ModelAdmin):
             'currency',
             'contract_address',
             'balance',
-            'confirmed'
             )
     list_filter = (
             'address',
