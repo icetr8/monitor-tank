@@ -71,6 +71,7 @@ class TestingAdmin(admin.ModelAdmin):
             'amount',
             'currency',
             'contract_address',
+            'script_hash',
             'balance',
             'confirmed'
             )
