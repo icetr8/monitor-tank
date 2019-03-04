@@ -44,7 +44,7 @@ class ManualCommandLog(Base):
     web = models.BooleanField(default=False)
 
 class Testing(Base):
-    address = models.CharField(max_length=50)
+    address = models.CharField(max_length=100)
     amount = models.CharField(max_length=40)
     currency = models.CharField(max_length=40)
     contract_address = models.CharField(max_length=100)
